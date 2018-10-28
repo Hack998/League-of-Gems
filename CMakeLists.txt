@@ -7,7 +7,7 @@ add_executable(sfml main.cpp)
 
 # Define sources and executable
 set(EXECUTABLE_NAME "MySFML")
-add_executable(${EXECUTABLE_NAME} main.cpp window.cpp window.h soldado.cpp soldado.h Enemigo.cpp Enemigo.h)
+add_executable(${EXECUTABLE_NAME} main.cpp window.cpp window.h soldado.cpp soldado.h Enemigo.cpp Enemigo.h Inicio.cpp Inicio.h)
 
 
 # Detect and add SFML

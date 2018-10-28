@@ -6,6 +6,7 @@
 #include <random>
 #include "soldado.h"
 #include "Enemigo.h"
+#include "Inicio.h"
 
 typedef soldado ejercito;
 
@@ -13,11 +14,10 @@ void window::iniciar(int cant, string route) {
     RenderWindow window(VideoMode(1200, 680), "League of Gems");
     RectangleShape rect4(Vector2f(1200, 680));
     rect4.setFillColor(Color::White);
-    RectangleShape rect5(Vector2f(1000, 680));
-    rect5.setFillColor(Color::Blue);
 
     Texture lab;
     Sprite labImage;
+
     Texture logo;
     logo.loadFromFile("../img/logo.png");
     Sprite logoS;
@@ -29,61 +29,61 @@ void window::iniciar(int cant, string route) {
     punch.loadFromFile("../img/punch.png");
     Sprite punchS;
     punchS.setTexture(punch);
-    punchS.setPosition(Vector2f(0,600));
+    punchS.setPosition(Vector2f(0, 600));
 
     Texture uppercut;
     uppercut.loadFromFile("../img/uppercut.png");
     Sprite uppercutS;
     uppercutS.setTexture(uppercut);
-    uppercutS.setPosition(Vector2f(100,600));
+    uppercutS.setPosition(Vector2f(100, 600));
 
     Texture fPunch;
     fPunch.loadFromFile("../img/fastPunch.png");
     Sprite fPunchS;
     fPunchS.setTexture(fPunch);
-    fPunchS.setPosition(Vector2f(200,600));
+    fPunchS.setPosition(Vector2f(200, 600));
 
     Texture kick;
     kick.loadFromFile("../img/kick.png");
     Sprite kickS;
     kickS.setTexture(kick);
-    kickS.setPosition(Vector2f(300,600));
+    kickS.setPosition(Vector2f(300, 600));
 
     Texture fastKick;
     fastKick.loadFromFile("../img/fastKick.png");
     Sprite fastKickS;
     fastKickS.setTexture(fastKick);
-    fastKickS.setPosition(Vector2f(400,600));
+    fastKickS.setPosition(Vector2f(400, 600));
 
     Texture reverseKick;
     reverseKick.loadFromFile("../img/reverseKick.png");
     Sprite reverseKickS;
     reverseKickS.setTexture(reverseKick);
-    reverseKickS.setPosition(Vector2f(500,600));
+    reverseKickS.setPosition(Vector2f(500, 600));
 
     Texture knife;
     knife.loadFromFile("../img/knife.png");
     Sprite knifeS;
     knifeS.setTexture(knife);
-    knifeS.setPosition(Vector2f(600,600));
+    knifeS.setPosition(Vector2f(600, 600));
 
     Texture hammer;
     hammer.loadFromFile("../img/hammer.png");
     Sprite hammerS;
     hammerS.setTexture(hammer);
-    hammerS.setPosition(Vector2f(700,600));
+    hammerS.setPosition(Vector2f(700, 600));
 
     Texture sword;
     sword.loadFromFile("../img/sword.png");
     Sprite swordS;
     swordS.setTexture(sword);
-    swordS.setPosition(Vector2f(800,600));
+    swordS.setPosition(Vector2f(800, 600));
 
     Texture arrow;
     arrow.loadFromFile("../img/arrow.png");
     Sprite arrowS;
     arrowS.setTexture(arrow);
-    arrowS.setPosition(Vector2f(900,600));
+    arrowS.setPosition(Vector2f(900, 600));
     //**********************************************
 
     if ( !lab.loadFromFile(route + "lab.png"))
@@ -98,7 +98,7 @@ void window::iniciar(int cant, string route) {
         if ( i + 3 == 10 )
             x = 5;
         ejercito temp;
-        temp.crear(i, i, 0, i);
+        temp.crear(i, i, i + x, 0);
         matriz1.matriz_pos[i + x][0] = 1;
         array[i] = temp;
     }
@@ -173,100 +173,176 @@ void window::iniciar(int cant, string route) {
             switch (event.type) {
                 case Event::Closed: {
                     window.close();
-                } break;
+                }
+                    break;
                 case Event::MouseButtonPressed: {
-                    ejercito *mu = array;
-                    if (ismove(mu)) {
-                        cout << "hola " << endl;
+                    Vector2i mousePos = Mouse::getPosition(window);
+                    Vector2f mousePosF(static_cast<float>( mousePos.x ), static_cast<float>( mousePos.y ));
+                    Vector2f mousePosF2(mousePosF.x - 140, mousePosF.y);
+                    cout << "Mouse X: " << mousePosF.x << "; Mouse Y:" << mousePosF.y << endl;
+                    cout << "Lab X: " << labImage.getGlobalBounds().width << "; Lab Y:"
+                         << labImage.getGlobalBounds().height << endl;
+                    if ( labImage.getGlobalBounds().contains(mousePosF2)) {
+                        int pos_mouse[2];
+                        cout << "Mouse X: " << mousePosF.x << "; Mouse Y:" << mousePosF.y << endl;
+                        for (int i = 0; i <= 42; i++) {
+                            if ((matriz1.matriz_pixels[0][i].x < mousePosF.x - (i * 3) &&
+                                 matriz1.matriz_pixels[0][i + 1].x > mousePosF.x - (i * 3)) ||
+                                (matriz1.matriz_pixels[0][i].x < mousePosF.x && mousePosF.x >= 971 && i == 42)) {
+                                pos_mouse[0] = i;
+                                for (int j = 0; j <= 22; j++) {
+                                    if ((matriz1.matriz_pixels[j][i].y < mousePosF.y &&
+                                         matriz1.matriz_pixels[j + 1][i].y > mousePosF.y) ||
+                                        (matriz1.matriz_pixels[j][i].y < mousePosF.y && mousePosF.y >= 571 &&
+                                         j == 22)) {
+                                        cout << "Pixel X: " << matriz1.matriz_pixels[j][i].x << "; Pixel Y:"
+                                             << matriz1.matriz_pixels[j][i].y << endl;
+                                        cout << "Pos X: " << j << "; Pos Y:" << i << endl;
+                                        pos_mouse[1] = j;
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+
+                        //
+                        for (int k = 0; k < 15; k++) {
+                            int xz = array[k].cuerpo.x;
+                            int yz = array[k].cuerpo.y;
+                            string path = Inicio::pathFind(Location(xz, yz), Location(pos_mouse[1], pos_mouse[0]),
+                                                           matriz1);
+                            cout << path << endl;
+                            for (int b = 0; b < path.length(); b++) {
+                                if ( path.substr(b, 1) == "0" ) {
+                                    array[k].agregar(xz + 1, yz, matriz1.matriz_pixels[xz + 1][yz]);
+                                    xz++;
+                                } else if ( path.substr(b, 1) == "1" ) {
+                                    array[k].agregar(xz, yz + 1, matriz1.matriz_pixels[xz][yz + 1]);
+                                    yz++;
+                                } else if ( path.substr(b, 1) == "2" ) {
+                                    array[k].agregar(xz - 1, yz, matriz1.matriz_pixels[xz - 1][yz]);
+                                    xz--;
+                                } else if ( path.substr(b, 1) == "3" ) {
+                                    array[k].agregar(xz, yz - 1, matriz1.matriz_pixels[xz][yz - 1]);
+                                    yz--;
+                                }
+                            }
+                        }
+                        ejercito *mu = array;
+                        int gh = 0;
+                        while (ismove(mu)) {
+                            for (int v = 0; v < 15; v++) {
+                                if ( array[v].cabeza != nullptr &&
+                                     matriz1.matriz_pos[array[v].cabeza->x][array[v].cabeza->y] != 1 ) {
+                                    matriz1.matriz_pos[array[v].cuerpo.x][array[v].cuerpo.y] = 0;
+                                    array[v].cuerpo.x = array[v].cabeza->x;
+                                    array[v].cuerpo.y = array[v].cabeza->y;
+                                    matriz1.matriz_pos[array[v].cuerpo.x][array[v].cuerpo.y] = 1;
+                                    array[v].eliminar();
+                                    gh++;
+                                }
+                            }
+                            if ( gh == 0 ) {
+                                for (int v = 0; v < 15; v++) {
+                                    array[v].total_eliminacion();
+                                }
+                                break;
+                            } else
+                                gh = 0;
+                        }
                     }
-                } break;
+                }
+                    break;
                 case Event::MouseMoved: {
                     Vector2i mousePos = Mouse::getPosition(window);
-                    Vector2f mousePosF(static_cast<float>(mousePos.x-65), static_cast<float>(mousePos.y));
-                    if (punchS.getGlobalBounds().contains(mousePosF)) {
+                    Vector2f mousePosF(static_cast<float>(mousePos.x - 65), static_cast<float>(mousePos.y));
+                    if ( punchS.getGlobalBounds().contains(mousePosF)) {
                         punchS.setPosition(Vector2f(0, 598));
-                    }else{
-                        punchS.setPosition(Vector2f(0,600));
+                    } else {
+                        punchS.setPosition(Vector2f(0, 600));
                     }
-                    if (uppercutS.getGlobalBounds().contains(mousePosF)) {
+                    if ( uppercutS.getGlobalBounds().contains(mousePosF)) {
                         uppercutS.setPosition(Vector2f(100, 598));
-                    }else{
+                    } else {
                         uppercutS.setPosition(Vector2f(100, 600));
                     }
-                    if (fPunchS.getGlobalBounds().contains(mousePosF) && this->screen >= 2) {
+                    if ( fPunchS.getGlobalBounds().contains(mousePosF) && this->screen >= 2 ) {
                         fPunchS.setPosition(Vector2f(200, 598));
-                    }else{
+                    } else {
                         fPunchS.setPosition(Vector2f(200, 600));
                     }
-                    if (kickS.getGlobalBounds().contains(mousePosF) && this->screen >= 2) {
+                    if ( kickS.getGlobalBounds().contains(mousePosF) && this->screen >= 2 ) {
                         kickS.setPosition(Vector2f(300, 598));
-                    }else{
+                    } else {
                         kickS.setPosition(Vector2f(300, 600));
                     }
-                    if (fastKickS.getGlobalBounds().contains(mousePosF) && this->screen >= 3) {
+                    if ( fastKickS.getGlobalBounds().contains(mousePosF) && this->screen >= 3 ) {
                         fastKickS.setPosition(Vector2f(400, 598));
-                    }else{
+                    } else {
                         fastKickS.setPosition(Vector2f(400, 600));
                     }
-                    if (reverseKickS.getGlobalBounds().contains(mousePosF) && this->screen >= 3) {
+                    if ( reverseKickS.getGlobalBounds().contains(mousePosF) && this->screen >= 3 ) {
                         reverseKickS.setPosition(Vector2f(500, 598));
-                    }else{
+                    } else {
                         reverseKickS.setPosition(Vector2f(500, 600));
                     }
-                    if (knifeS.getGlobalBounds().contains(mousePosF) && this->screen >= 4) {
+                    if ( knifeS.getGlobalBounds().contains(mousePosF) && this->screen >= 4 ) {
                         knifeS.setPosition(Vector2f(600, 598));
-                    }else{
+                    } else {
                         knifeS.setPosition(Vector2f(600, 600));
                     }
-                    if (hammerS.getGlobalBounds().contains(mousePosF) && this->screen >= 4) {
+                    if ( hammerS.getGlobalBounds().contains(mousePosF) && this->screen >= 4 ) {
                         hammerS.setPosition(Vector2f(700, 598));
-                    }else{
+                    } else {
                         hammerS.setPosition(Vector2f(700, 600));
                     }
-                    if (swordS.getGlobalBounds().contains(mousePosF) && this->screen >= 5) {
+                    if ( swordS.getGlobalBounds().contains(mousePosF) && this->screen >= 5 ) {
                         swordS.setPosition(Vector2f(800, 598));
-                    }else{
+                    } else {
                         swordS.setPosition(Vector2f(800, 600));
                     }
-                    if (arrowS.getGlobalBounds().contains(mousePosF) && this->screen >= 5) {
+                    if ( arrowS.getGlobalBounds().contains(mousePosF) && this->screen >= 5 ) {
                         arrowS.setPosition(Vector2f(900, 598));
-                    }else{
+                    } else {
                         arrowS.setPosition(Vector2f(900, 600));
                     }
-                }break;
+                }
+                    break;
             }
         }
         window.clear();
         window.draw(rect4);
         window.draw(logoS);
-        switch(screen){
+
+        switch (screen) {
             case 1:
-                fPunchS.setColor(Color(80,80,80,225));
-                kickS.setColor(Color(80,80,80,225));
-                fastKickS.setColor(Color(80,80,80,225));
-                reverseKickS.setColor(Color(80,80,80,225));
-                knifeS.setColor(Color(80,80,80,225));
-                hammerS.setColor(Color(80,80,80,225));
-                swordS.setColor(Color(80,80,80,225));
-                arrowS.setColor(Color(80,80,80,225));
+                fPunchS.setColor(Color(80, 80, 80, 225));
+                kickS.setColor(Color(80, 80, 80, 225));
+                fastKickS.setColor(Color(80, 80, 80, 225));
+                reverseKickS.setColor(Color(80, 80, 80, 225));
+                knifeS.setColor(Color(80, 80, 80, 225));
+                hammerS.setColor(Color(80, 80, 80, 225));
+                swordS.setColor(Color(80, 80, 80, 225));
+                arrowS.setColor(Color(80, 80, 80, 225));
                 break;
             case 2:
-                fastKickS.setColor(Color(80,80,80,225));
-                reverseKickS.setColor(Color(80,80,80,225));
-                knifeS.setColor(Color(80,80,80,225));
-                hammerS.setColor(Color(80,80,80,225));
-                swordS.setColor(Color(80,80,80,225));
-                arrowS.setColor(Color(80,80,80,225));
+                fastKickS.setColor(Color(80, 80, 80, 225));
+                reverseKickS.setColor(Color(80, 80, 80, 225));
+                knifeS.setColor(Color(80, 80, 80, 225));
+                hammerS.setColor(Color(80, 80, 80, 225));
+                swordS.setColor(Color(80, 80, 80, 225));
+                arrowS.setColor(Color(80, 80, 80, 225));
                 break;
             case 3:
-                knifeS.setColor(Color(80,80,80,225));
-                hammerS.setColor(Color(80,80,80,225));
-                swordS.setColor(Color(80,80,80,225));
-                arrowS.setColor(Color(80,80,80,225));
+                knifeS.setColor(Color(80, 80, 80, 225));
+                hammerS.setColor(Color(80, 80, 80, 225));
+                swordS.setColor(Color(80, 80, 80, 225));
+                arrowS.setColor(Color(80, 80, 80, 225));
                 break;
             case 4:
-                swordS.setColor(Color(80,80,80,225));
-                arrowS.setColor(Color(80,80,80,225));
+                swordS.setColor(Color(80, 80, 80, 225));
+                arrowS.setColor(Color(80, 80, 80, 225));
                 break;
         }
 
@@ -316,6 +392,7 @@ void window::iniciar(int cant, string route) {
             }
         }
         window.display();
+
     }
 }
 
@@ -358,3 +435,4 @@ bool window::ismove(ejercito *lo) {
     }
     return false;
 }
+
