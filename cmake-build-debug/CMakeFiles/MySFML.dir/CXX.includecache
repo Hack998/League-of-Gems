@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/davepj007/CLionProjects/League-of-Gems/Enemigo.h
-string
--
-iostream
--
-
 /home/davepj007/CLionProjects/League-of-Gems/main.cpp
 SFML/Graphics.hpp
 -
@@ -27,16 +21,6 @@ SFML/Graphics.hpp
 -
 iostream
 -
-
-/home/davepj007/CLionProjects/League-of-Gems/window.cpp
-window.h
-/home/davepj007/CLionProjects/League-of-Gems/window.h
-random
--
-soldado.h
-/home/davepj007/CLionProjects/League-of-Gems/soldado.h
-Enemigo.h
-/home/davepj007/CLionProjects/League-of-Gems/Enemigo.h
 
 /home/davepj007/CLionProjects/League-of-Gems/window.h
 string

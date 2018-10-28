@@ -10,9 +10,16 @@ int main() {
     string route = "../img/";
     // Main
     RenderWindow main(VideoMode(500, 500), "League of Gems");
+    main.setPosition(Vector2i(400,100));
 
     Texture background;
     Sprite backgroundImage;
+
+    Texture logo;
+    logo.loadFromFile("../img/logo.png");
+    Sprite logoS;
+    logoS.setTexture(logo);
+    logoS.setPosition(Vector2f(140, 50));
 
     if ( !background.loadFromFile( route + "background main.jpg" ) )
         cout << "Can't find the image" << endl;
@@ -94,6 +101,7 @@ int main() {
         }
         main.clear();
         main.draw(backgroundImage);
+        main.draw(logoS);
         main.draw(easyButtonImage);
         main.draw(normalButtonImage);
         main.draw(hardButtonImage);

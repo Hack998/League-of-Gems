@@ -18,6 +18,11 @@ void window::iniciar(int cant, string route) {
 
     Texture lab;
     Sprite labImage;
+    Texture logo;
+    logo.loadFromFile("../img/logo.png");
+    Sprite logoS;
+    logoS.setTexture(logo);
+    logoS.setPosition(Vector2f(1000, 75));
 
     //**********************************************
     Texture punch;
@@ -233,7 +238,7 @@ void window::iniciar(int cant, string route) {
         }
         window.clear();
         window.draw(rect4);
-
+        window.draw(logoS);
         switch(screen){
             case 1:
                 fPunchS.setColor(Color(80,80,80,225));
