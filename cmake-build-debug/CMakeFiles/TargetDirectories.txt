@@ -1,6 +1,6 @@
-/home/samuel/CLionProjects/sfml/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/samuel/CLionProjects/sfml/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/samuel/CLionProjects/sfml/cmake-build-debug/CMakeFiles/sfml.dir
-/home/samuel/CLionProjects/sfml/cmake-build-debug/CMakeFiles/package_source.dir
-/home/samuel/CLionProjects/sfml/cmake-build-debug/CMakeFiles/MySFML.dir
-/home/samuel/CLionProjects/sfml/cmake-build-debug/CMakeFiles/package.dir
+/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/sfml.dir
+/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/package_source.dir
+/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/MySFML.dir
+/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/package.dir

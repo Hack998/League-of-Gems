@@ -6,29 +6,39 @@
 
 #IncludeRegexTransform: 
 
-/home/samuel/CLionProjects/sfml/Enemigo.h
+/home/davepj007/CLionProjects/League-of-Gems/Enemigo.h
 string
 -
 iostream
 -
 
-/home/samuel/CLionProjects/sfml/soldado.h
+/home/davepj007/CLionProjects/League-of-Gems/main.cpp
+SFML/Graphics.hpp
+-
+string
+-
+iostream
+-
+window.h
+/home/davepj007/CLionProjects/League-of-Gems/window.h
+
+/home/davepj007/CLionProjects/League-of-Gems/soldado.h
 SFML/Graphics.hpp
 -
 iostream
 -
 
-/home/samuel/CLionProjects/sfml/window.cpp
+/home/davepj007/CLionProjects/League-of-Gems/window.cpp
 window.h
-/home/samuel/CLionProjects/sfml/window.h
+/home/davepj007/CLionProjects/League-of-Gems/window.h
 random
 -
 soldado.h
-/home/samuel/CLionProjects/sfml/soldado.h
+/home/davepj007/CLionProjects/League-of-Gems/soldado.h
 Enemigo.h
-/home/samuel/CLionProjects/sfml/Enemigo.h
+/home/davepj007/CLionProjects/League-of-Gems/Enemigo.h
 
-/home/samuel/CLionProjects/sfml/window.h
+/home/davepj007/CLionProjects/League-of-Gems/window.h
 string
 -
 SFML/Graphics.hpp
@@ -36,5 +46,5 @@ SFML/Graphics.hpp
 iostream
 -
 soldado.h
-/home/samuel/CLionProjects/sfml/soldado.h
+/home/davepj007/CLionProjects/League-of-Gems/soldado.h
 

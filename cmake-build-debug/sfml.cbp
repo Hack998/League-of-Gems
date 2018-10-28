@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;CMake Files\cmake_modules\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/samuel/CLionProjects/sfml/cmake-build-debug"/>
+				<Option working_dir="/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/samuel/CLionProjects/sfml/cmake-build-debug"/>
+				<Option working_dir="/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/samuel/CLionProjects/sfml/cmake-build-debug"/>
+				<Option working_dir="/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="sfml">
-				<Option output="/home/samuel/CLionProjects/sfml/cmake-build-debug/sfml" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/samuel/CLionProjects/sfml/cmake-build-debug"/>
+				<Option output="/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/sfml" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -54,15 +54,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 sfml"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 sfml"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="sfml/fast">
-				<Option output="/home/samuel/CLionProjects/sfml/cmake-build-debug/sfml" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/samuel/CLionProjects/sfml/cmake-build-debug"/>
+				<Option output="/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/sfml" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -77,25 +77,25 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 sfml/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 sfml/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="package_source">
-				<Option working_dir="/home/samuel/CLionProjects/sfml/cmake-build-debug"/>
+				<Option working_dir="/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 package_source"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 package_source"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="MySFML">
-				<Option output="/home/samuel/CLionProjects/sfml/cmake-build-debug/MySFML" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/samuel/CLionProjects/sfml/cmake-build-debug"/>
+				<Option output="/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/MySFML" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -110,15 +110,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 MySFML"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 MySFML"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="MySFML/fast">
-				<Option output="/home/samuel/CLionProjects/sfml/cmake-build-debug/MySFML" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/samuel/CLionProjects/sfml/cmake-build-debug"/>
+				<Option output="/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/MySFML" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -133,49 +133,49 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 MySFML/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 MySFML/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="package">
-				<Option working_dir="/home/samuel/CLionProjects/sfml/cmake-build-debug"/>
+				<Option working_dir="/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 package"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/CLionProjects/sfml/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 package"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/samuel/CLionProjects/sfml/Enemigo.cpp">
+		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/Enemigo.cpp">
 			<Option target="MySFML"/>
 		</Unit>
-		<Unit filename="/home/samuel/CLionProjects/sfml/Enemigo.h">
+		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/Enemigo.h">
 			<Option target="MySFML"/>
 		</Unit>
-		<Unit filename="/home/samuel/CLionProjects/sfml/main.cpp">
+		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/main.cpp">
 			<Option target="sfml"/>
 			<Option target="MySFML"/>
 		</Unit>
-		<Unit filename="/home/samuel/CLionProjects/sfml/soldado.cpp">
+		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/soldado.cpp">
 			<Option target="MySFML"/>
 		</Unit>
-		<Unit filename="/home/samuel/CLionProjects/sfml/soldado.h">
+		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/soldado.h">
 			<Option target="MySFML"/>
 		</Unit>
-		<Unit filename="/home/samuel/CLionProjects/sfml/window.cpp">
+		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/window.cpp">
 			<Option target="MySFML"/>
 		</Unit>
-		<Unit filename="/home/samuel/CLionProjects/sfml/window.h">
+		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/window.h">
 			<Option target="MySFML"/>
 		</Unit>
-		<Unit filename="/home/samuel/CLionProjects/sfml/CMakeLists.txt">
+		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/home/samuel/CLionProjects/sfml/cmake_modules/FindSFML.cmake">
+		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/cmake_modules/FindSFML.cmake">
 			<Option virtualFolder="CMake Files\cmake_modules\"/>
 		</Unit>
 	</Project>

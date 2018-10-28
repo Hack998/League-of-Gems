@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/samuel/CLionProjects/sfml/Enemigo.cpp" "/home/samuel/CLionProjects/sfml/cmake-build-debug/CMakeFiles/MySFML.dir/Enemigo.cpp.o"
-  "/home/samuel/CLionProjects/sfml/main.cpp" "/home/samuel/CLionProjects/sfml/cmake-build-debug/CMakeFiles/MySFML.dir/main.cpp.o"
-  "/home/samuel/CLionProjects/sfml/soldado.cpp" "/home/samuel/CLionProjects/sfml/cmake-build-debug/CMakeFiles/MySFML.dir/soldado.cpp.o"
-  "/home/samuel/CLionProjects/sfml/window.cpp" "/home/samuel/CLionProjects/sfml/cmake-build-debug/CMakeFiles/MySFML.dir/window.cpp.o"
+  "/home/davepj007/CLionProjects/League-of-Gems/Enemigo.cpp" "/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/MySFML.dir/Enemigo.cpp.o"
+  "/home/davepj007/CLionProjects/League-of-Gems/main.cpp" "/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/MySFML.dir/main.cpp.o"
+  "/home/davepj007/CLionProjects/League-of-Gems/soldado.cpp" "/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/MySFML.dir/soldado.cpp.o"
+  "/home/davepj007/CLionProjects/League-of-Gems/window.cpp" "/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/MySFML.dir/window.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

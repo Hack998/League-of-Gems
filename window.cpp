@@ -19,6 +19,68 @@ void window::iniciar(int cant, string route) {
     Texture lab;
     Sprite labImage;
 
+    //**********************************************
+    Texture punch;
+    punch.loadFromFile("../img/punch.png");
+    Sprite punchS;
+    punchS.setTexture(punch);
+    punchS.setPosition(Vector2f(0,600));
+
+    Texture uppercut;
+    uppercut.loadFromFile("../img/uppercut.png");
+    Sprite uppercutS;
+    uppercutS.setTexture(uppercut);
+    uppercutS.setPosition(Vector2f(100,600));
+
+    Texture fPunch;
+    fPunch.loadFromFile("../img/fastPunch.png");
+    Sprite fPunchS;
+    fPunchS.setTexture(fPunch);
+    fPunchS.setPosition(Vector2f(200,600));
+
+    Texture kick;
+    kick.loadFromFile("../img/kick.png");
+    Sprite kickS;
+    kickS.setTexture(kick);
+    kickS.setPosition(Vector2f(300,600));
+
+    Texture fastKick;
+    fastKick.loadFromFile("../img/fastKick.png");
+    Sprite fastKickS;
+    fastKickS.setTexture(fastKick);
+    fastKickS.setPosition(Vector2f(400,600));
+
+    Texture reverseKick;
+    reverseKick.loadFromFile("../img/reverseKick.png");
+    Sprite reverseKickS;
+    reverseKickS.setTexture(reverseKick);
+    reverseKickS.setPosition(Vector2f(500,600));
+
+    Texture knife;
+    knife.loadFromFile("../img/knife.png");
+    Sprite knifeS;
+    knifeS.setTexture(knife);
+    knifeS.setPosition(Vector2f(600,600));
+
+    Texture hammer;
+    hammer.loadFromFile("../img/hammer.png");
+    Sprite hammerS;
+    hammerS.setTexture(hammer);
+    hammerS.setPosition(Vector2f(700,600));
+
+    Texture sword;
+    sword.loadFromFile("../img/sword.png");
+    Sprite swordS;
+    swordS.setTexture(sword);
+    swordS.setPosition(Vector2f(800,600));
+
+    Texture arrow;
+    arrow.loadFromFile("../img/arrow.png");
+    Sprite arrowS;
+    arrowS.setTexture(arrow);
+    arrowS.setPosition(Vector2f(900,600));
+    //**********************************************
+
     if ( !lab.loadFromFile(route + "lab.png"))
         cout << "Can't find the image" << endl;
 
@@ -104,21 +166,117 @@ void window::iniciar(int cant, string route) {
         Event event;
         while (window.pollEvent(event)) {
             switch (event.type) {
-                case Event::Closed:
+                case Event::Closed: {
                     window.close();
-                    break;
-                case Event::MouseButtonPressed:
+                } break;
+                case Event::MouseButtonPressed: {
                     ejercito *mu = array;
-                    if ( ismove(mu)) {
+                    if (ismove(mu)) {
                         cout << "hola " << endl;
                     }
-                    break;
+                } break;
+                case Event::MouseMoved: {
+                    Vector2i mousePos = Mouse::getPosition(window);
+                    Vector2f mousePosF(static_cast<float>(mousePos.x-65), static_cast<float>(mousePos.y));
+                    if (punchS.getGlobalBounds().contains(mousePosF)) {
+                        punchS.setPosition(Vector2f(0, 598));
+                    }else{
+                        punchS.setPosition(Vector2f(0,600));
+                    }
+                    if (uppercutS.getGlobalBounds().contains(mousePosF)) {
+                        uppercutS.setPosition(Vector2f(100, 598));
+                    }else{
+                        uppercutS.setPosition(Vector2f(100, 600));
+                    }
+                    if (fPunchS.getGlobalBounds().contains(mousePosF) && this->screen >= 2) {
+                        fPunchS.setPosition(Vector2f(200, 598));
+                    }else{
+                        fPunchS.setPosition(Vector2f(200, 600));
+                    }
+                    if (kickS.getGlobalBounds().contains(mousePosF) && this->screen >= 2) {
+                        kickS.setPosition(Vector2f(300, 598));
+                    }else{
+                        kickS.setPosition(Vector2f(300, 600));
+                    }
+                    if (fastKickS.getGlobalBounds().contains(mousePosF) && this->screen >= 3) {
+                        fastKickS.setPosition(Vector2f(400, 598));
+                    }else{
+                        fastKickS.setPosition(Vector2f(400, 600));
+                    }
+                    if (reverseKickS.getGlobalBounds().contains(mousePosF) && this->screen >= 3) {
+                        reverseKickS.setPosition(Vector2f(500, 598));
+                    }else{
+                        reverseKickS.setPosition(Vector2f(500, 600));
+                    }
+                    if (knifeS.getGlobalBounds().contains(mousePosF) && this->screen >= 4) {
+                        knifeS.setPosition(Vector2f(600, 598));
+                    }else{
+                        knifeS.setPosition(Vector2f(600, 600));
+                    }
+                    if (hammerS.getGlobalBounds().contains(mousePosF) && this->screen >= 4) {
+                        hammerS.setPosition(Vector2f(700, 598));
+                    }else{
+                        hammerS.setPosition(Vector2f(700, 600));
+                    }
+                    if (swordS.getGlobalBounds().contains(mousePosF) && this->screen >= 5) {
+                        swordS.setPosition(Vector2f(800, 598));
+                    }else{
+                        swordS.setPosition(Vector2f(800, 600));
+                    }
+                    if (arrowS.getGlobalBounds().contains(mousePosF) && this->screen >= 5) {
+                        arrowS.setPosition(Vector2f(900, 598));
+                    }else{
+                        arrowS.setPosition(Vector2f(900, 600));
+                    }
+                }break;
             }
         }
         window.clear();
         window.draw(rect4);
-        window.draw(rect5);
+
+        switch(screen){
+            case 1:
+                fPunchS.setColor(Color(80,80,80,225));
+                kickS.setColor(Color(80,80,80,225));
+                fastKickS.setColor(Color(80,80,80,225));
+                reverseKickS.setColor(Color(80,80,80,225));
+                knifeS.setColor(Color(80,80,80,225));
+                hammerS.setColor(Color(80,80,80,225));
+                swordS.setColor(Color(80,80,80,225));
+                arrowS.setColor(Color(80,80,80,225));
+                break;
+            case 2:
+                fastKickS.setColor(Color(80,80,80,225));
+                reverseKickS.setColor(Color(80,80,80,225));
+                knifeS.setColor(Color(80,80,80,225));
+                hammerS.setColor(Color(80,80,80,225));
+                swordS.setColor(Color(80,80,80,225));
+                arrowS.setColor(Color(80,80,80,225));
+                break;
+            case 3:
+                knifeS.setColor(Color(80,80,80,225));
+                hammerS.setColor(Color(80,80,80,225));
+                swordS.setColor(Color(80,80,80,225));
+                arrowS.setColor(Color(80,80,80,225));
+                break;
+            case 4:
+                swordS.setColor(Color(80,80,80,225));
+                arrowS.setColor(Color(80,80,80,225));
+                break;
+        }
+
+        window.draw(punchS);
+        window.draw(uppercutS);
+        window.draw(fPunchS);
+        window.draw(kickS);
+        window.draw(fastKickS);
+        window.draw(reverseKickS);
+        window.draw(knifeS);
+        window.draw(hammerS);
+        window.draw(swordS);
+        window.draw(arrowS);
         window.draw(labImage);
+
         for (int i = 0; i <= 22; i++) {
             for (int j = 0; j <= 42; j++) {
                 if ( matriz1.matriz_pos[i][j] == -1 ) {

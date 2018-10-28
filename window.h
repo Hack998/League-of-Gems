@@ -20,6 +20,8 @@ public:
         Vector2f matriz_pixels[23][43];
     } matriz;
 
+    int screen = 5;
+
     void iniciar(int cant, string route);
     Matriz iniciar_matriz();
     bool ismove(ejercito *lo);

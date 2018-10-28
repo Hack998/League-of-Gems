@@ -7,7 +7,7 @@ using namespace sf;
 using namespace std;
 
 int main() {
-    string route = "/home/samuel/CLionProjects/sfml/img/";
+    string route = "../img/";
     // Main
     RenderWindow main(VideoMode(500, 500), "League of Gems");
 
