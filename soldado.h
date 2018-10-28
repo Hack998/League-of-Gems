@@ -38,7 +38,7 @@ public:
     void agregar(int x, int y, Vector2f v);
 
     //Buscar en la lista
-    int buscar();
+    int total_eliminacion();
 
     //Elimina la cabeza
     void eliminar();

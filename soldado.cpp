@@ -32,7 +32,8 @@ void soldado::agregar(int x, int y, Vector2f v) {
     }
 }
 
-int soldado::buscar() {
+int soldado::total_eliminacion() {
+    cabeza = nullptr;
 }
 
 void soldado::eliminar() {
