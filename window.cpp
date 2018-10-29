@@ -28,7 +28,8 @@ void window::iniciar(int cant, string route) {
     logoS.setTexture(logo);
     logoS.setPosition(Vector2f(1000, 75));
 
-    //****************** CONSOLE *******************
+    ///****************** CONSOLA *******************
+    ///**********************************************
     RectangleShape console(Vector2f(193,337));
     console.setFillColor(Color::Black);
     console.setOutlineColor(Color::Cyan);
@@ -39,14 +40,15 @@ void window::iniciar(int cant, string route) {
     font.loadFromFile("../font/cour.ttf");
     Text text;
     text.setFont(font);
-    text.setString("123456789ABCDEFGHIJKLM");
-    text.setCharacterSize(12);
-    text.setColor(Color::White);
-    text.setStyle(Text::Bold);
-    text.setPosition(Vector2f(1010,360));
+    string impresion = "";
 
-    //****************** ATAQUES *******************
-    //**********************************************
+    Text algUso;
+    algUso.setFont(font);
+    ///**********************************************
+
+
+    ///****************** ATAQUES *******************
+    ///**********************************************
     Texture punch;
     punch.loadFromFile(route + "punch.png");
     Sprite punchS;
@@ -106,7 +108,7 @@ void window::iniciar(int cant, string route) {
     Sprite arrowS;
     arrowS.setTexture(arrow);
     arrowS.setPosition(Vector2f(900, 600));
-    //**********************************************
+    ///**********************************************
 
     matriz matriz1 = iniciar_matriz();
 
@@ -117,7 +119,7 @@ void window::iniciar(int cant, string route) {
         if ( i + 3 == 10 )
             x = 5;
         ejercito temp;
-        temp.crear(i, i, i + x, 0);
+        temp.crear(100, 5, i + x, 0);
         matriz1.matriz_pos[i + x][0] = 1;
         array[i] = temp;
     }
@@ -199,15 +201,18 @@ void window::iniciar(int cant, string route) {
                     break;
                 // Hacer click
                 case Event::MouseButtonPressed: {
+                    impresion += "\nClick!";
                     Vector2i mousePos = Mouse::getPosition(window);
                     Vector2f mousePosF(static_cast<float>( mousePos.x ), static_cast<float>( mousePos.y ));
                     Vector2f mousePosF2(mousePosF.x - 140, mousePosF.y);
                     cout << "Mouse X: " << mousePosF.x << "; Mouse Y:" << mousePosF.y << endl;
                     cout << "Lab X: " << labImage.getGlobalBounds().width << "; Lab Y:"
                          << labImage.getGlobalBounds().height << endl;
+                    /// Valida que el click este dentro del laberinto
                     if ( labImage.getGlobalBounds().contains(mousePosF2) ||
                          labImage.getGlobalBounds().contains(mousePosF)) {
                         int pos_mouse[2];
+                        /// Localiza hasta que posicion de la matriz debe moverse el sprite
                         for (int i = 0; i <= 42; i++) {
                             if ((matriz1.matriz_pixels[0][i].x < mousePosF.x - (i * 3) &&
                                  matriz1.matriz_pixels[0][i + 1].x > mousePosF.x - (i * 3)) ||
@@ -229,10 +234,10 @@ void window::iniciar(int cant, string route) {
                             }
                         }
 
-                        //
+                        /// Ejecuta el movimiento de cada sprite
                         for (int k = 0; k < 15; k++) {
-                            int xz = array[k].cuerpo.x;
-                            int yz = array[k].cuerpo.y;
+                            int xz = array[k].cuerpo.x; /// Posicion inicial del sprite en x
+                            int yz = array[k].cuerpo.y; /// Posicion inicial del sprite en y
                             string path = Inicio::pathFind(Location(xz, yz), Location(pos_mouse[1], pos_mouse[0]),
                                                            matriz1);
                             cout << path << endl;
@@ -340,8 +345,6 @@ void window::iniciar(int cant, string route) {
         window.clear();
         window.draw(rect4);
         window.draw(console);
-        window.draw(text);
-        window.draw(logoS);
 
         switch (screen) {
             case 1:
@@ -353,6 +356,8 @@ void window::iniciar(int cant, string route) {
                 hammerS.setColor(Color(80, 80, 80, 225));
                 swordS.setColor(Color(80, 80, 80, 225));
                 arrowS.setColor(Color(80, 80, 80, 225));
+
+                algUso.setString("Algoritmo en uso: \nInicio?");
                 break;
             case 2:
                 fastKickS.setColor(Color(80, 80, 80, 225));
@@ -361,19 +366,45 @@ void window::iniciar(int cant, string route) {
                 hammerS.setColor(Color(80, 80, 80, 225));
                 swordS.setColor(Color(80, 80, 80, 225));
                 arrowS.setColor(Color(80, 80, 80, 225));
+
+                algUso.setString("Algoritmo en uso: \nPrim");
                 break;
             case 3:
                 knifeS.setColor(Color(80, 80, 80, 225));
                 hammerS.setColor(Color(80, 80, 80, 225));
                 swordS.setColor(Color(80, 80, 80, 225));
                 arrowS.setColor(Color(80, 80, 80, 225));
+
+                algUso.setString("Algoritmo en uso: \nKruskal");
                 break;
             case 4:
                 swordS.setColor(Color(80, 80, 80, 225));
                 arrowS.setColor(Color(80, 80, 80, 225));
+
+                algUso.setString("Algoritmo en uso: \nDijkstra");
+                break;
+            case 5:
+                algUso.setString("Algoritmo en uso: \nPathFinding");
                 break;
         }
 
+        ///*************** IMPRESION ********************
+        ///**********************************************
+        algUso.setCharacterSize(12);
+        algUso.setColor(Color::White);
+        algUso.setStyle(Text::Bold);
+        algUso.setPosition(Vector2f(1010,360));
+
+        text.setString(impresion);
+        text.setCharacterSize(12);
+        text.setColor(Color::White);
+        text.setStyle(Text::Bold);
+        text.setPosition(Vector2f(1010,375));
+        ///**********************************************
+
+        window.draw(algUso);
+        window.draw(text);
+        window.draw(logoS);
         window.draw(punchS);
         window.draw(uppercutS);
         window.draw(fPunchS);

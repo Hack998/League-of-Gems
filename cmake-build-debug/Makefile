@@ -158,33 +158,6 @@ MySFML/fast:
 	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/build
 .PHONY : MySFML/fast
 
-Ataque.o: Ataque.cpp.o
-
-.PHONY : Ataque.o
-
-# target to build an object file
-Ataque.cpp.o:
-	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Ataque.cpp.o
-.PHONY : Ataque.cpp.o
-
-Ataque.i: Ataque.cpp.i
-
-.PHONY : Ataque.i
-
-# target to preprocess a source file
-Ataque.cpp.i:
-	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Ataque.cpp.i
-.PHONY : Ataque.cpp.i
-
-Ataque.s: Ataque.cpp.s
-
-.PHONY : Ataque.s
-
-# target to generate assembly for a file
-Ataque.cpp.s:
-	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Ataque.cpp.s
-.PHONY : Ataque.cpp.s
-
 Enemigo.o: Enemigo.cpp.o
 
 .PHONY : Enemigo.o
@@ -335,9 +308,6 @@ help:
 	@echo "... package_source"
 	@echo "... MySFML"
 	@echo "... package"
-	@echo "... Ataque.o"
-	@echo "... Ataque.i"
-	@echo "... Ataque.s"
 	@echo "... Enemigo.o"
 	@echo "... Enemigo.i"
 	@echo "... Enemigo.s"

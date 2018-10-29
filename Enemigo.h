@@ -7,16 +7,17 @@
 
 #include <string>
 #include <iostream>
+#include "soldado.h"
 
 class Enemigo {
 
     typedef Enemigo E;
 
 public:
-    int vida = 0;
-    int ataque = 0;
+    float vida = 0.0;
+    float ataque = 0;
 
-    int nivel = vida + ataque;
+    float nivel = vida + ataque;
 
     int min = 2;
     int max = 5;
@@ -40,6 +41,10 @@ public:
         this->ataque = at;
         this->nivel = vi + at;
     };
+
+    void atacar(soldado soldier){
+        soldier.cuerpo.vida -= this->ataque;
+    }
 
     E *crearPoblacion(int cantidad) {
         E enem[cantidad];

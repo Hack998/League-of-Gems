@@ -4,7 +4,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/MySFML.dir/soldado.cpp.o"
   "CMakeFiles/MySFML.dir/Enemigo.cpp.o"
   "CMakeFiles/MySFML.dir/Inicio.cpp.o"
-  "CMakeFiles/MySFML.dir/Ataque.cpp.o"
   "MySFML.pdb"
   "MySFML"
 )
