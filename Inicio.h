@@ -10,6 +10,7 @@
 
 using namespace std;
 
+// Estructura de la Locacion
 struct Location {
     int row, col;
 
@@ -25,9 +26,8 @@ struct Location {
 
 class Inicio {
 public:
-    static string pathFind(const Location &locStart,
-                           const Location &locFinish, window::Matriz m);
-    };
+    static string pathFind(const Location &locStart, const Location &locFinish, window::Matriz m);
+};
 
 
 #endif //SFML_INICIO_H

@@ -10,40 +10,39 @@ int main() {
     string route = "../img/";
     // Main
     RenderWindow main(VideoMode(500, 500), "League of Gems");
-    main.setPosition(Vector2i(400,100));
+    main.setPosition(Vector2i(400, 100));
 
+    // Fondo
     Texture background;
+    background.loadFromFile(route + "background main.jpg");
     Sprite backgroundImage;
+    backgroundImage.setTexture(background);
 
+    // Logo
     Texture logo;
-    logo.loadFromFile("../img/logo.png");
+    logo.loadFromFile(route + "logo.png");
     Sprite logoS;
     logoS.setTexture(logo);
     logoS.setPosition(Vector2f(140, 50));
 
-    if ( !background.loadFromFile( route + "background main.jpg" ) )
-        cout << "Can't find the image" << endl;
-
-    backgroundImage.setTexture( background );
-
+    // Boton Facil
     Texture easyButton;
+    easyButton.loadFromFile(route + "easy.png");
     Sprite easyButtonImage;
-    if ( !easyButton.loadFromFile(route + "easy.png"))
-        cout << "Can't find the image" << endl;
     easyButtonImage.setTexture(easyButton);
     easyButtonImage.setPosition(Vector2f(225, 300));
 
+    // Boton Normal
     Texture normalButton;
+    normalButton.loadFromFile(route + "normal.png");
     Sprite normalButtonImage;
-    if ( !normalButton.loadFromFile(route + "normal.png"))
-        cout << "Can't find the image" << endl;
     normalButtonImage.setTexture(normalButton);
     normalButtonImage.setPosition(Vector2f(225, 350));
 
+    // Boton Dificil
     Texture hardButton;
+    hardButton.loadFromFile(route + "hard.png");
     Sprite hardButtonImage;
-    if ( !hardButton.loadFromFile(route + "hard.png"))
-        cout << "Can't find the image" << endl;
     hardButtonImage.setTexture(hardButton);
     hardButtonImage.setPosition(Vector2f(225, 400));
 
@@ -51,9 +50,11 @@ int main() {
         Event event;
         while (main.pollEvent(event)) {
             switch (event.type) {
+                // Se cierra la ventana
                 case Event::Closed:
                     main.close();
                     break;
+                // Movimiento del mouse
                 case Event::MouseMoved: {
                     Vector2i mousePos = Mouse::getPosition(main);
                     Vector2f mousePosF(static_cast<float>( mousePos.x ), static_cast<float>( mousePos.y ));
@@ -74,6 +75,7 @@ int main() {
                     }
                 }
                     break;
+                // Hacer click
                 case Event::MouseButtonPressed: {
                     Vector2i mousePos = Mouse::getPosition(main);
                     Vector2f mousePosF(static_cast<float>( mousePos.x), static_cast<float>( mousePos.y ));
@@ -81,24 +83,25 @@ int main() {
                         cout << "Easy" << endl;
                         window window;
                         main.close();
-                        window.iniciar(20,route);
+                        window.iniciar(20, route);
                     }
                     if ( normalButtonImage.getGlobalBounds().contains(mousePosF)) {
                         cout << "Normal" << endl;
                         window window;
                         main.close();
-                        window.iniciar(25,route);
+                        window.iniciar(25, route);
                     }
                     if ( hardButtonImage.getGlobalBounds().contains(mousePosF)) {
                         cout << "Hard" << endl;
                         window window;
                         main.close();
-                        window.iniciar(35,route);
+                        window.iniciar(35, route);
                     }
                 }
                     break;
             }
         }
+        // Dibuja en  pantalla
         main.clear();
         main.draw(backgroundImage);
         main.draw(logoS);

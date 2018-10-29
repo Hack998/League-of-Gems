@@ -13,11 +13,10 @@ void soldado::crear(int vida, int ataque, int x, int y) {
     soldado::cuerpo = temp;
 }
 
-void soldado::agregar(int x, int y, Vector2f v) {
+void soldado::agregar(int x, int y) {
     auto nuevo_nodo = new nodoSimple();
     nuevo_nodo->x = x;
     nuevo_nodo->y = y;
-    nuevo_nodo->vector = v;
     nuevo_nodo->siguiente = nullptr;
 
     nodoSimple *cola = cabeza;

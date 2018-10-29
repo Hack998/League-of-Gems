@@ -25,6 +25,7 @@ public:
     void iniciar(int cant, string route);
     Matriz iniciar_matriz();
     bool ismove(ejercito *lo);
+    int* buscarMouse ();
 };
 
 

@@ -15,83 +15,84 @@ void window::iniciar(int cant, string route) {
     RectangleShape rect4(Vector2f(1200, 680));
     rect4.setFillColor(Color::White);
 
+    // Laberinto
     Texture lab;
     Sprite labImage;
+    lab.loadFromFile(route + "lab.png");
+    labImage.setTexture(lab);
 
+    // Logo
     Texture logo;
-    logo.loadFromFile("../img/logo.png");
+    logo.loadFromFile(route + "logo.png");
     Sprite logoS;
     logoS.setTexture(logo);
     logoS.setPosition(Vector2f(1000, 75));
 
-    //**********************************************
+    // Habilidades
     Texture punch;
-    punch.loadFromFile("../img/punch.png");
+    punch.loadFromFile(route + "punch.png");
     Sprite punchS;
     punchS.setTexture(punch);
     punchS.setPosition(Vector2f(0, 600));
 
     Texture uppercut;
-    uppercut.loadFromFile("../img/uppercut.png");
+    uppercut.loadFromFile(route + "uppercut.png");
     Sprite uppercutS;
     uppercutS.setTexture(uppercut);
     uppercutS.setPosition(Vector2f(100, 600));
 
     Texture fPunch;
-    fPunch.loadFromFile("../img/fastPunch.png");
+    fPunch.loadFromFile(route + "fastPunch.png");
     Sprite fPunchS;
     fPunchS.setTexture(fPunch);
     fPunchS.setPosition(Vector2f(200, 600));
 
     Texture kick;
-    kick.loadFromFile("../img/kick.png");
+    kick.loadFromFile(route + "kick.png");
     Sprite kickS;
     kickS.setTexture(kick);
     kickS.setPosition(Vector2f(300, 600));
 
     Texture fastKick;
-    fastKick.loadFromFile("../img/fastKick.png");
+    fastKick.loadFromFile(route + "fastKick.png");
     Sprite fastKickS;
     fastKickS.setTexture(fastKick);
     fastKickS.setPosition(Vector2f(400, 600));
 
     Texture reverseKick;
-    reverseKick.loadFromFile("../img/reverseKick.png");
+    reverseKick.loadFromFile(route + "reverseKick.png");
     Sprite reverseKickS;
     reverseKickS.setTexture(reverseKick);
     reverseKickS.setPosition(Vector2f(500, 600));
 
     Texture knife;
-    knife.loadFromFile("../img/knife.png");
+    knife.loadFromFile(route + "knife.png");
     Sprite knifeS;
     knifeS.setTexture(knife);
     knifeS.setPosition(Vector2f(600, 600));
 
     Texture hammer;
-    hammer.loadFromFile("../img/hammer.png");
+    hammer.loadFromFile(route + "hammer.png");
     Sprite hammerS;
     hammerS.setTexture(hammer);
     hammerS.setPosition(Vector2f(700, 600));
 
     Texture sword;
-    sword.loadFromFile("../img/sword.png");
+    sword.loadFromFile(route + "sword.png");
     Sprite swordS;
     swordS.setTexture(sword);
     swordS.setPosition(Vector2f(800, 600));
 
     Texture arrow;
-    arrow.loadFromFile("../img/arrow.png");
+    arrow.loadFromFile(route + "arrow.png");
     Sprite arrowS;
     arrowS.setTexture(arrow);
     arrowS.setPosition(Vector2f(900, 600));
-    //**********************************************
+    //
 
-    if ( !lab.loadFromFile(route + "lab.png"))
-        cout << "Can't find the image" << endl;
-
-    labImage.setTexture(lab);
     matriz matriz1 = iniciar_matriz();
 
+    // Aliados
     ejercito array[15];
     int x = 3;
     for (int i = 0; i < 15; i++) {
@@ -103,6 +104,7 @@ void window::iniciar(int cant, string route) {
         array[i] = temp;
     }
 
+    // Enemigos
     Enemigo em;
     Enemigo *array_e = em.crearPoblacion(cant);
     int cant_1 = 0;
@@ -160,6 +162,7 @@ void window::iniciar(int cant, string route) {
         }
     }
 
+    // *****************
     for (int i = 0; i <= 22; i++) {
         cout << "" << endl;
         for (int j = 0; j <= 42; j++) {
@@ -171,10 +174,12 @@ void window::iniciar(int cant, string route) {
         Event event;
         while (window.pollEvent(event)) {
             switch (event.type) {
+                // Se cierra la ventana
                 case Event::Closed: {
                     window.close();
                 }
                     break;
+                // Hacer click
                 case Event::MouseButtonPressed: {
                     Vector2i mousePos = Mouse::getPosition(window);
                     Vector2f mousePosF(static_cast<float>( mousePos.x ), static_cast<float>( mousePos.y ));
@@ -182,9 +187,9 @@ void window::iniciar(int cant, string route) {
                     cout << "Mouse X: " << mousePosF.x << "; Mouse Y:" << mousePosF.y << endl;
                     cout << "Lab X: " << labImage.getGlobalBounds().width << "; Lab Y:"
                          << labImage.getGlobalBounds().height << endl;
-                    if ( labImage.getGlobalBounds().contains(mousePosF2)) {
+                    if ( labImage.getGlobalBounds().contains(mousePosF2) ||
+                         labImage.getGlobalBounds().contains(mousePosF)) {
                         int pos_mouse[2];
-                        cout << "Mouse X: " << mousePosF.x << "; Mouse Y:" << mousePosF.y << endl;
                         for (int i = 0; i <= 42; i++) {
                             if ((matriz1.matriz_pixels[0][i].x < mousePosF.x - (i * 3) &&
                                  matriz1.matriz_pixels[0][i + 1].x > mousePosF.x - (i * 3)) ||
@@ -215,16 +220,16 @@ void window::iniciar(int cant, string route) {
                             cout << path << endl;
                             for (int b = 0; b < path.length(); b++) {
                                 if ( path.substr(b, 1) == "0" ) {
-                                    array[k].agregar(xz + 1, yz, matriz1.matriz_pixels[xz + 1][yz]);
+                                    array[k].agregar(xz + 1, yz);
                                     xz++;
                                 } else if ( path.substr(b, 1) == "1" ) {
-                                    array[k].agregar(xz, yz + 1, matriz1.matriz_pixels[xz][yz + 1]);
+                                    array[k].agregar(xz, yz + 1);
                                     yz++;
                                 } else if ( path.substr(b, 1) == "2" ) {
-                                    array[k].agregar(xz - 1, yz, matriz1.matriz_pixels[xz - 1][yz]);
+                                    array[k].agregar(xz - 1, yz);
                                     xz--;
                                 } else if ( path.substr(b, 1) == "3" ) {
-                                    array[k].agregar(xz, yz - 1, matriz1.matriz_pixels[xz][yz - 1]);
+                                    array[k].agregar(xz, yz - 1);
                                     yz--;
                                 }
                             }
@@ -254,6 +259,7 @@ void window::iniciar(int cant, string route) {
                     }
                 }
                     break;
+                // Movimiento del mouse
                 case Event::MouseMoved: {
                     Vector2i mousePos = Mouse::getPosition(window);
                     Vector2f mousePosF(static_cast<float>(mousePos.x - 65), static_cast<float>(mousePos.y));
@@ -311,6 +317,8 @@ void window::iniciar(int cant, string route) {
                     break;
             }
         }
+
+        // Dibujar en pantalla.
         window.clear();
         window.draw(rect4);
         window.draw(logoS);
@@ -396,6 +404,7 @@ void window::iniciar(int cant, string route) {
     }
 }
 
+// Inicia las matrices
 window::Matriz window::iniciar_matriz() {
     window::matriz matriz1;
     for (int i = 0; i <= 22; i++) {
@@ -427,6 +436,7 @@ window::Matriz window::iniciar_matriz() {
     return matriz1;
 }
 
+// Pregunta si alguien se esta moviendo
 bool window::ismove(ejercito *lo) {
     for (int i = 0; i < 15; i++) {
         if ( lo[i].cabeza != nullptr ) {
@@ -434,5 +444,10 @@ bool window::ismove(ejercito *lo) {
         }
     }
     return false;
+}
+
+// Busca la posicion del mouse al hacer click
+int* window::buscarMouse() {
+
 }
 

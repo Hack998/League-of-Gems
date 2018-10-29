@@ -13,34 +13,34 @@ using namespace std;
 
 class soldado {
 public:
+    // Escructura del nodo de movimiento
     typedef struct NodoSimple {
         int x;
         int y;
-        Vector2f vector;
         NodoSimple *siguiente;
     } nodoSimple;
 
+    // Escructura del soldaado
     typedef struct Soldado {
         int vida;
         int ataque;
         int x;
         int y;
-        NodoSimple nodo;
     } guerrero;
 
     nodoSimple *cabeza = nullptr;
     guerrero cuerpo;
 
-    //Genera el soldado
+    //Genera el soldado.
     void crear(int vida, int ataque, int x, int y);
 
-    //Agregar al final
-    void agregar(int x, int y, Vector2f v);
+    //Agregar al final.
+    void agregar(int x, int y);
 
-    //Buscar en la lista
+    //Elimina todos los movimientos en la lista.
     int total_eliminacion();
 
-    //Elimina la cabeza
+    //Elimina la cabeza de la lista.
     void eliminar();
 };
 
