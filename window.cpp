@@ -28,7 +28,25 @@ void window::iniciar(int cant, string route) {
     logoS.setTexture(logo);
     logoS.setPosition(Vector2f(1000, 75));
 
-    // Habilidades
+    //****************** CONSOLE *******************
+    RectangleShape console(Vector2f(193,337));
+    console.setFillColor(Color::Black);
+    console.setOutlineColor(Color::Cyan);
+    console.setOutlineThickness(3);
+    console.setPosition(Vector2f(1003,340));
+
+    Font font;
+    font.loadFromFile("../font/cour.ttf");
+    Text text;
+    text.setFont(font);
+    text.setString("123456789ABCDEFGHIJKLM");
+    text.setCharacterSize(12);
+    text.setColor(Color::White);
+    text.setStyle(Text::Bold);
+    text.setPosition(Vector2f(1010,360));
+
+    //****************** ATAQUES *******************
+    //**********************************************
     Texture punch;
     punch.loadFromFile(route + "punch.png");
     Sprite punchS;
@@ -88,7 +106,7 @@ void window::iniciar(int cant, string route) {
     Sprite arrowS;
     arrowS.setTexture(arrow);
     arrowS.setPosition(Vector2f(900, 600));
-    //
+    //**********************************************
 
     matriz matriz1 = iniciar_matriz();
 
@@ -321,6 +339,8 @@ void window::iniciar(int cant, string route) {
         // Dibujar en pantalla.
         window.clear();
         window.draw(rect4);
+        window.draw(console);
+        window.draw(text);
         window.draw(logoS);
 
         switch (screen) {

@@ -4,7 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/davepj007/CLionProjects/League-of-Gems/Ataque.cpp" "/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/MySFML.dir/Ataque.cpp.o"
   "/home/davepj007/CLionProjects/League-of-Gems/Enemigo.cpp" "/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/MySFML.dir/Enemigo.cpp.o"
+  "/home/davepj007/CLionProjects/League-of-Gems/Inicio.cpp" "/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/MySFML.dir/Inicio.cpp.o"
   "/home/davepj007/CLionProjects/League-of-Gems/main.cpp" "/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/MySFML.dir/main.cpp.o"
   "/home/davepj007/CLionProjects/League-of-Gems/soldado.cpp" "/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/MySFML.dir/soldado.cpp.o"
   "/home/davepj007/CLionProjects/League-of-Gems/window.cpp" "/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles/MySFML.dir/window.cpp.o"

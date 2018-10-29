@@ -150,10 +150,22 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/Ataque.cpp">
+			<Option target="MySFML"/>
+		</Unit>
+		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/Ataque.h">
+			<Option target="MySFML"/>
+		</Unit>
 		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/Enemigo.cpp">
 			<Option target="MySFML"/>
 		</Unit>
 		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/Enemigo.h">
+			<Option target="MySFML"/>
+		</Unit>
+		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/Inicio.cpp">
+			<Option target="MySFML"/>
+		</Unit>
+		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/Inicio.h">
 			<Option target="MySFML"/>
 		</Unit>
 		<Unit filename="/home/davepj007/CLionProjects/League-of-Gems/main.cpp">

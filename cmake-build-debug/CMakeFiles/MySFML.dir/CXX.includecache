@@ -6,6 +6,34 @@
 
 #IncludeRegexTransform: 
 
+/home/davepj007/CLionProjects/League-of-Gems/Enemigo.h
+string
+-
+iostream
+-
+
+/home/davepj007/CLionProjects/League-of-Gems/Inicio.cpp
+Inicio.h
+/home/davepj007/CLionProjects/League-of-Gems/Inicio.h
+iostream
+-
+iomanip
+-
+math.h
+-
+ctime
+-
+string
+-
+queue
+-
+
+/home/davepj007/CLionProjects/League-of-Gems/Inicio.h
+string
+-
+window.h
+/home/davepj007/CLionProjects/League-of-Gems/window.h
+
 /home/davepj007/CLionProjects/League-of-Gems/main.cpp
 SFML/Graphics.hpp
 -
@@ -16,11 +44,27 @@ iostream
 window.h
 /home/davepj007/CLionProjects/League-of-Gems/window.h
 
+/home/davepj007/CLionProjects/League-of-Gems/soldado.cpp
+soldado.h
+/home/davepj007/CLionProjects/League-of-Gems/soldado.h
+
 /home/davepj007/CLionProjects/League-of-Gems/soldado.h
 SFML/Graphics.hpp
 -
 iostream
 -
+
+/home/davepj007/CLionProjects/League-of-Gems/window.cpp
+window.h
+/home/davepj007/CLionProjects/League-of-Gems/window.h
+random
+-
+soldado.h
+/home/davepj007/CLionProjects/League-of-Gems/soldado.h
+Enemigo.h
+/home/davepj007/CLionProjects/League-of-Gems/Enemigo.h
+Inicio.h
+/home/davepj007/CLionProjects/League-of-Gems/Inicio.h
 
 /home/davepj007/CLionProjects/League-of-Gems/window.h
 string
