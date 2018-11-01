@@ -26,6 +26,7 @@ public:
     Matriz iniciar_matriz();
     bool ismove(ejercito *lo);
     int* buscarMouse ();
+    void checkLines(int* lines, string* impresion);
 };
 
 

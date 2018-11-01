@@ -40,7 +40,7 @@ public:
     void agregar(int x, int y);
 
     //Atacar
-    void atacar(int ataque, Enemigo enemigo);
+    void atacar(int ataque, Enemigo* enemigo);
 
     //Elimina todos los movimientos en la lista.
     int total_eliminacion();

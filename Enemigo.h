@@ -7,6 +7,7 @@
 
 #include <string>
 #include <iostream>
+#include <stddef.h>
 #include "soldado.h"
 
 class Enemigo {
@@ -16,6 +17,7 @@ class Enemigo {
 public:
     float vida = 0.0;
     float ataque = 0;
+    int x = 0, y = 0;
 
     float nivel = vida + ataque;
 
@@ -42,18 +44,43 @@ public:
         this->nivel = vi + at;
     };
 
-    void atacar(soldado soldier){
-        soldier.cuerpo.vida -= this->ataque;
+    void atacar(soldado* soldier){
+        soldier->cuerpo.vida -= this->ataque;
     }
 
-    E *crearPoblacion(int cantidad) {
-        E enem[cantidad];
-        E *mu = enem;
+    void setPosicion(int x, int y){
+        this->x = x;
+        this->y = y;
+    }
+
+    int getPosicionX(){
+        return this->x;
+    }
+
+    int getPosicionY(){
+        return this->y;
+    }
+
+    void printPos(E* array_e, int size){
+        for (int i = 0; i < size; ++i) {
+            std::cout << "X: " << array_e[i].x << " Y: " << array_e[i].y << std::endl;
+        }
+    }
+
+    E buscarPorPos(int x, int y, E* array_e, int size){
+        for (int i = 0; i < size; ++i) {
+            if(array_e[i].x == x && array_e[i].y == y){
+                return array_e[i];
+            }
+        }
+        return array_e[0];
+    }
+
+    void crearPoblacion(int cantidad, E* array) {
         for (int i = 0; i < cantidad; i++) {
             E enemigo = E(random2 = std::rand() % max2 + min2, random = std::rand() % max + min);
-            enem[i] = enemigo;
+            array[i] = enemigo;
         }
-        return mu;
     }
 
     E *ordenarArray(int cantidad) { //se debe pasar el array como parametro

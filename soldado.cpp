@@ -31,40 +31,40 @@ void soldado::agregar(int x, int y) {
     }
 }
 
-void soldado::atacar(int ataque, Enemigo enemigo) {
+void soldado::atacar(int ataque, Enemigo* enemigo) {
     switch(ataque){
         case 1:
-            enemigo.vida -= soldado::cuerpo.ataque*1.25;
+            enemigo->vida -= soldado::cuerpo.ataque*1.25;
             break;
         case 2:
-            enemigo.vida -= soldado::cuerpo.ataque*1.50;
+            enemigo->vida -= soldado::cuerpo.ataque*1.50;
             break;
         case 3:
-            enemigo.vida -= soldado::cuerpo.ataque*1.75;
+            enemigo->vida -= soldado::cuerpo.ataque*1.75;
             break;
         case 4:
-            enemigo.vida -= soldado::cuerpo.ataque*2;
+            enemigo->vida -= soldado::cuerpo.ataque*2;
             break;
         case 5:
-            enemigo.vida -= soldado::cuerpo.ataque*2.25;
+            enemigo->vida -= soldado::cuerpo.ataque*2.25;
             break;
         case 6:
-            enemigo.vida -= soldado::cuerpo.ataque*2.50;
+            enemigo->vida -= soldado::cuerpo.ataque*2.50;
             break;
         case 7:
-            enemigo.vida -= soldado::cuerpo.ataque*2.75;
+            enemigo->vida -= soldado::cuerpo.ataque*2.75;
             break;
         case 8:
-            enemigo.vida -= soldado::cuerpo.ataque*3;
+            enemigo->vida -= soldado::cuerpo.ataque*3;
             break;
         case 9:
-            enemigo.vida -= soldado::cuerpo.ataque*3.25;
+            enemigo->vida -= soldado::cuerpo.ataque*3.25;
             break;
         case 10:
-            enemigo.vida -= soldado::cuerpo.ataque*3.25;
+            enemigo->vida -= soldado::cuerpo.ataque*3.25;
             break;
         default:
-            enemigo.vida -= soldado::cuerpo.ataque;
+            enemigo->vida -= soldado::cuerpo.ataque;
             break;
     }
 }
