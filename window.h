@@ -27,6 +27,9 @@ public:
     bool ismove(ejercito *lo);
     int* buscarMouse ();
     void checkLines(int* lines, string* impresion);
+    bool enemigoCerca(int matriz_pos[23][43], int i, int j);
+    bool soldadoCerca(int matriz_pos[23][43], int i, int j);
+    void validarAtaque(IntRect* rectSourceSprite, int attack);
 };
 
 
