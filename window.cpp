@@ -121,7 +121,6 @@ void window::iniciar(int cant, string route) {
     matriz matriz1 = iniciar_matriz();
 
     // Aliados
-    ejercito array[15];
     int x = 3;
     for (int i = 0; i < 15; i++) {
         if ( i + 3 == 10 )
@@ -129,11 +128,10 @@ void window::iniciar(int cant, string route) {
         ejercito temp;
         temp.crear(std::rand() % 50 + 20, std::rand() % 5 + 2, i + x, 0);
         matriz1.matriz_pos[i + x][0] = 1;
-        array[i] = temp;
+        array_s[i] = temp;
     }
 
     // Enemigos
-    Enemigo em;
     Enemigo array_e[cant];
     em.crearPoblacion(cant, array_e);
     int cant_1 = 0;
@@ -306,45 +304,45 @@ void window::iniciar(int cant, string route) {
 
                         /// Ejecuta el movimiento de cada sprite
                         for (int k = 0; k < 15; k++) {
-                            int xz = array[k].cuerpo.x; /// Posicion inicial del sprite en x
-                            int yz = array[k].cuerpo.y; /// Posicion inicial del sprite en y
+                            int xz = array_s[k].cuerpo.x; /// Posicion inicial del sprite en x
+                            int yz = array_s[k].cuerpo.y; /// Posicion inicial del sprite en y
                             string path = Inicio::pathFind(Location(xz, yz), Location(pos_mouse[1], pos_mouse[0]),
                                                            matriz1);
                             cout << path << endl;
                             for (int b = 0; b < path.length(); b++) {
                                 if ( path.substr(b, 1) == "0" ) {
-                                    array[k].agregar(xz + 1, yz);
+                                    array_s[k].agregar(xz + 1, yz);
                                     xz++;
                                 } else if ( path.substr(b, 1) == "1" ) {
-                                    array[k].agregar(xz, yz + 1);
+                                    array_s[k].agregar(xz, yz + 1);
                                     yz++;
                                 } else if ( path.substr(b, 1) == "2" ) {
-                                    array[k].agregar(xz - 1, yz);
+                                    array_s[k].agregar(xz - 1, yz);
                                     xz--;
                                 } else if ( path.substr(b, 1) == "3" ) {
-                                    array[k].agregar(xz, yz - 1);
+                                    array_s[k].agregar(xz, yz - 1);
                                     yz--;
                                 }
                             }
                         }
 
-                        ejercito *mu = array;
+                        ejercito *mu = array_s;
                         int gh = 0;
                         while (ismove(mu)) {
                             for (int v = 0; v < 15; v++) {
-                                if ( array[v].cabeza != nullptr &&
-                                     matriz1.matriz_pos[array[v].cabeza->x][array[v].cabeza->y] != 1 ) {
-                                    matriz1.matriz_pos[array[v].cuerpo.x][array[v].cuerpo.y] = 0;
-                                    array[v].cuerpo.x = array[v].cabeza->x;
-                                    array[v].cuerpo.y = array[v].cabeza->y;matriz1.matriz_pos[array[v].cuerpo.x][array[v].cuerpo.y] = 1;
-                                    array[v].eliminar();
+                                if ( array_s[v].cabeza != nullptr &&
+                                     matriz1.matriz_pos[array_s[v].cabeza->x][array_s[v].cabeza->y] != 1 ) {
+                                    matriz1.matriz_pos[array_s[v].cuerpo.x][array_s[v].cuerpo.y] = 0;
+                                    array_s[v].cuerpo.x = array_s[v].cabeza->x;
+                                    array_s[v].cuerpo.y = array_s[v].cabeza->y;matriz1.matriz_pos[array_s[v].cuerpo.x][array_s[v].cuerpo.y] = 1;
+                                    array_s[v].eliminar();
                                     gh++;
                                 }
                             }
 
                             if ( gh == 0 ) {
                                 for (int v = 0; v < 15; v++) {
-                                    array[v].total_eliminacion();
+                                    array_s[v].total_eliminacion();
                                 }
                                 break;
                             } else
@@ -353,31 +351,9 @@ void window::iniciar(int cant, string route) {
 
                         ///********************* COMPRUEBA ENEMIGOS CERCA **************************
                         ///*************************************************************************
-                        for(int i = 0; i < 15; i++) {
-                            int pos[2] = {-1,-1};
-                            if (matriz1.matriz_pos[array[i].cuerpo.x][array[i].cuerpo.y - 1] == 2) {
-                                pos[0] = array[i].cuerpo.x;
-                                pos[1] = array[i].cuerpo.y-1;
-                            }
-                            else if (matriz1.matriz_pos[array[i].cuerpo.x - 1][array[i].cuerpo.y] == 2){
-                                pos[0] = array[i].cuerpo.x-1;
-                                pos[1] = array[i].cuerpo.y;
-                            }
-                            else if (matriz1.matriz_pos[array[i].cuerpo.x][array[i].cuerpo.y + 1] == 2){
-                                pos[0] = array[i].cuerpo.x;
-                                pos[1] = array[i].cuerpo.y+1;
-                            }
-                            else if (matriz1.matriz_pos[array[i].cuerpo.x + 1][array[i].cuerpo.y] == 2){
-                                pos[0] = array[i].cuerpo.x+1;
-                                pos[1] = array[i].cuerpo.y;
-                            }
-
-                            if(pos[0] != -1 && pos[1] != -1) {
-                                this->checkLines(&lines, &impresion);
-                                impresion += "\nEnemigo se acerca!";
-                                tempE = em.buscarPorPos(pos[0], pos[1], array_e, cant);
-                                tempS = array[i];
-                            }
+                        if(this->enemigoCerca(&matriz1, array_e, &tempE, &tempS, cant)) {
+                            this->checkLines(&lines, &impresion);
+                            impresion += "\nEnemigo se acerca!";
                         }
                         ///*************************************************************************
 
@@ -520,8 +496,24 @@ void window::iniciar(int cant, string route) {
         window.draw(arrowS);
         window.draw(labImage);
 
+        Texture s_texture;
+        if (!s_texture.loadFromFile(route + "soldierSheet.png"))
+            cout << "Can't find the image" << endl;
+        IntRect s_rectSourceSprite(10, 10, 30, 30);
+        Sprite aliado(s_texture, s_rectSourceSprite);
+
+        Texture e_texture;
+        if ( !e_texture.loadFromFile(route + "enemySheet.png"))
+            cout << "Can't find the image" << endl;
+        IntRect e_rectSourceSprite(120, 35, 30, 30);
+        Sprite enemigo(e_texture, e_rectSourceSprite);
+
         for (int i = 0; i <= 22; i++) {
             for (int j = 0; j <= 42; j++) {
+
+                /*if(tempE.vida <= 0 || tempS.cuerpo.vida <= 0){
+                    this->enemigoCerca(&matriz1, array_e, &tempE, &tempS, cant);
+                }*/
 
                 Texture grass;
                 Sprite grassS;
@@ -540,9 +532,6 @@ void window::iniciar(int cant, string route) {
                     obstaculo.setTexture(texture);
                     window.draw(obstaculo);
                 }
-                if(matriz1.matriz_pos[i][j] == 0){
-                    window.draw(grassS);
-                }
                 if (matriz1.matriz_pos[i][j] == 1 ) {
                     RectangleShape line;
                     line.setSize(Vector2f(20.0,3.0));
@@ -550,19 +539,26 @@ void window::iniciar(int cant, string route) {
                     line.setFillColor(Color::Green);
                     window.draw(line);
 
-                    Texture texture;
-                    if (!texture.loadFromFile(route + "soldierSheet.png"))
-                        cout << "Can't find the image" << endl;
-
-                    IntRect rectSourceSprite(10, 10, 30, 30);
-                    if(clock.getElapsedTime().asSeconds() > 2.0f && tempE.vida > 0 && tempS.cuerpo.vida > 0 && enemigoCerca(matriz1.matriz_pos, i, j)){
-                        validarAtaque(&rectSourceSprite, attack);
+                    if(clock.getElapsedTime().asMilliseconds() > 500 && tempE.vida > 0 && tempS.cuerpo.vida > 0 && enemigoCerca(matriz1.matriz_pos, i, j)){
+                        validarAtaque(&s_rectSourceSprite, attack);
 
                         std::cout << "Vida Enemigo Antes: " << tempE.vida << std::endl;
                         tempS.atacar(attack, &tempE);
                         std::cout << "Vida Enemigo Despues: " << tempE.vida << std::endl;
 
-                        if(tempE.vida > 0){
+                        if(soldadoCerca(matriz1.matriz_pos, tempE.x, tempE.y)) {
+                            e_rectSourceSprite.left = 0;
+                            e_rectSourceSprite.top = 35;
+
+                            std::cout << "Vida Soldado Antes: " << tempS.cuerpo.vida << std::endl;
+                            tempE.atacar(&tempS);
+                            std::cout << "Vida Soldado Despues: " << tempS.cuerpo.vida << std::endl;
+                        }else{
+                            e_rectSourceSprite.left = 120;
+                            e_rectSourceSprite.top = 35;
+                        }
+
+                        if(tempE.vida > 0 || tempS.cuerpo.vida > 0){
                             clock.restart();
                         }
 
@@ -570,9 +566,21 @@ void window::iniciar(int cant, string route) {
                             this->checkLines(&lines, &impresion);
                             impresion += "\nEnemigo eliminado...";
                             matriz1.matriz_pos[tempE.x][tempE.y] = 0;
+                            this->enemigoCerca(&matriz1, array_e, &tempE, &tempS, cant);
+                        }else if(tempS.cuerpo.vida <= 0){
+                            this->checkLines(&lines, &impresion);
+                            impresion += "\nSoldado Caido...";
+                            matriz1.matriz_pos[tempS.cuerpo.x][tempS.cuerpo.y] = 0;
+                            this->enemigoCerca(&matriz1, array_e, &tempE, &tempS, cant);
                         }
+                    }else{
+                        s_rectSourceSprite.left = 10;
+                        s_rectSourceSprite.top = 10;
+
+                        e_rectSourceSprite.left = 120;
+                        e_rectSourceSprite.top = 35;
                     }
-                    Sprite aliado(texture, rectSourceSprite);
+                    aliado.setTextureRect(s_rectSourceSprite);
                     Vector2f vector2f = matriz1.matriz_pixels[i][j];
                     aliado.setPosition(Vector2f(vector2f.x, vector2f.y + 1));
                     window.draw(aliado);
@@ -584,30 +592,12 @@ void window::iniciar(int cant, string route) {
                     line.setFillColor(Color::Red);
                     window.draw(line);
 
-                    Texture texture;
-                    if ( !texture.loadFromFile(route + "enemySheet.png"))
-                        cout << "Can't find the image" << endl;
-
-                    IntRect rectSourceSprite(120, 35, 30, 30);
-                    if(clock.getElapsedTime().asSeconds() > 2.0f && tempE.vida > 0 && tempS.cuerpo.vida > 0 && soldadoCerca(matriz1.matriz_pos, i, j)){
-                        rectSourceSprite.left = 0;
-                        rectSourceSprite.top = 35;
-
-                        std::cout << "Vida Soldado Antes: " << tempS.cuerpo.vida << std::endl;
-                        tempE.atacar(&tempS);
-                        std::cout << "Vida Soldado Despues: " << tempS.cuerpo.vida << std::endl;
-
-                        if(tempS.cuerpo.vida > 0){
-                            clock.restart();
-                        }
-
-                        if(tempS.cuerpo.vida <= 0){
-                            this->checkLines(&lines, &impresion);
-                            impresion += "\nSoldado Caido...";
-                            matriz1.matriz_pos[tempS.cuerpo.x][tempS.cuerpo.y] = 0;
-                        }
+                    if(tempE.y != j){
+                        e_rectSourceSprite.left = 120;
+                        e_rectSourceSprite.top = 35;
                     }
-                    Sprite enemigo(texture, rectSourceSprite);
+
+                    enemigo.setTextureRect(e_rectSourceSprite);
                     Vector2f vector2f = matriz1.matriz_pixels[i][j];
                     enemigo.setPosition(Vector2f(vector2f.x, vector2f.y + 1));
                     window.draw(enemigo);
@@ -641,6 +631,9 @@ void window::iniciar(int cant, string route) {
                                 std::cout << "Can't find the image" << std::endl;
                             }
                             break;
+                    }
+                    if(matriz1.matriz_pos[i][j] == 0){
+                        window.draw(grassS);
                     }
                     gemS.setPosition(matriz1.matriz_pixels[i][j]);
                     gemS.setTexture(gem);
@@ -706,6 +699,35 @@ void window::checkLines(int* lines, string* impresion){
         *impresion = "";
         *lines = 0;
     }
+}
+
+bool window::enemigoCerca(matriz* matriz1, Enemigo* array_e, Enemigo* tempE, soldado* tempS, int cant) {
+    for(int i = 0; i < 15; i++) {
+        int pos[2] = {-1,-1};
+        if (matriz1->matriz_pos[array_s[i].cuerpo.x][array_s[i].cuerpo.y - 1] == 2) {
+            pos[0] = array_s[i].cuerpo.x;
+            pos[1] = array_s[i].cuerpo.y-1;
+        }
+        else if (matriz1->matriz_pos[array_s[i].cuerpo.x - 1][array_s[i].cuerpo.y] == 2){
+            pos[0] = array_s[i].cuerpo.x-1;
+            pos[1] = array_s[i].cuerpo.y;
+        }
+        else if (matriz1->matriz_pos[array_s[i].cuerpo.x][array_s[i].cuerpo.y + 1] == 2){
+            pos[0] = array_s[i].cuerpo.x;
+            pos[1] = array_s[i].cuerpo.y+1;
+        }
+        else if (matriz1->matriz_pos[array_s[i].cuerpo.x + 1][array_s[i].cuerpo.y] == 2){
+            pos[0] = array_s[i].cuerpo.x+1;
+            pos[1] = array_s[i].cuerpo.y;
+        }
+
+        if(pos[0] != -1 && pos[1] != -1) {
+            *tempE = em.buscarPorPos(pos[0], pos[1], array_e, cant);
+            *tempS = array_s[i];
+            return true;
+        }
+    }
+    return false;
 }
 
 bool window::enemigoCerca(int matriz_pos[23][43], int i, int j) {

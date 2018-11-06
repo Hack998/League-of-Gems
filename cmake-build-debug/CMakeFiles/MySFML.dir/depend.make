@@ -5,11 +5,13 @@ CMakeFiles/MySFML.dir/Enemigo.cpp.o: ../Enemigo.cpp
 CMakeFiles/MySFML.dir/Enemigo.cpp.o: ../Enemigo.h
 CMakeFiles/MySFML.dir/Enemigo.cpp.o: ../soldado.h
 
+CMakeFiles/MySFML.dir/Inicio.cpp.o: ../Enemigo.h
 CMakeFiles/MySFML.dir/Inicio.cpp.o: ../Inicio.cpp
 CMakeFiles/MySFML.dir/Inicio.cpp.o: ../Inicio.h
 CMakeFiles/MySFML.dir/Inicio.cpp.o: ../soldado.h
 CMakeFiles/MySFML.dir/Inicio.cpp.o: ../window.h
 
+CMakeFiles/MySFML.dir/main.cpp.o: ../Enemigo.h
 CMakeFiles/MySFML.dir/main.cpp.o: ../main.cpp
 CMakeFiles/MySFML.dir/main.cpp.o: ../soldado.h
 CMakeFiles/MySFML.dir/main.cpp.o: ../window.h
