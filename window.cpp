@@ -220,50 +220,49 @@ void window::iniciar(int cant, string route) {
 
                     Vector2i mousePos = Mouse::getPosition(window);
                     Vector2f mousePosF(static_cast<float>( mousePos.x ), static_cast<float>( mousePos.y ));
-                    Vector2f mousePosF2(mousePosF.x - 77, mousePosF.y);
                     cout << "Mouse X: " << mousePosF.x << "; Mouse Y:" << mousePosF.y << endl;
                     cout << "Lab X: " << labImage.getGlobalBounds().width << "; Lab Y:"
                          << labImage.getGlobalBounds().height << endl;
 
                     ///************************ COMPRUEBA CLICK EN ATAQUES ************************
                     ///****************************************************************************
-                    if ( punchS.getGlobalBounds().contains(mousePosF2) && !uppercutS.getGlobalBounds().contains(mousePosF2)) {
+                    if ( punchS.getGlobalBounds().contains(mousePosF) && !uppercutS.getGlobalBounds().contains(mousePosF)) {
                         punchS.setColor(Color::Green);
                         attack = 1;
                     }
-                    if ( !punchS.getGlobalBounds().contains(mousePosF2) && uppercutS.getGlobalBounds().contains(mousePosF2) && !fPunchS.getGlobalBounds().contains(mousePosF2)) {
+                    if ( !punchS.getGlobalBounds().contains(mousePosF) && uppercutS.getGlobalBounds().contains(mousePosF) && !fPunchS.getGlobalBounds().contains(mousePosF)) {
                         uppercutS.setColor(Color::Green);
                         attack = 2;
                     }
-                    if ( (!uppercutS.getGlobalBounds().contains(mousePosF2) && fPunchS.getGlobalBounds().contains(mousePosF2) && !kickS.getGlobalBounds().contains(mousePosF2)) && this->screen >= 2 ) {
+                    if ( (!uppercutS.getGlobalBounds().contains(mousePosF) && fPunchS.getGlobalBounds().contains(mousePosF) && !kickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 2 ) {
                         fPunchS.setColor(Color::Green);
                         attack = 3;
                     }
-                    if ( (!fPunchS.getGlobalBounds().contains(mousePosF2) && kickS.getGlobalBounds().contains(mousePosF2) && !fastKickS.getGlobalBounds().contains(mousePosF2)) && this->screen >= 2 ) {
+                    if ( (!fPunchS.getGlobalBounds().contains(mousePosF) && kickS.getGlobalBounds().contains(mousePosF) && !fastKickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 2 ) {
                         kickS.setColor(Color::Green);
                         attack = 4;
                     }
-                    if ( (!kickS.getGlobalBounds().contains(mousePosF2) && fastKickS.getGlobalBounds().contains(mousePosF2) && !reverseKickS.getGlobalBounds().contains(mousePosF2)) && this->screen >= 3 ) {
+                    if ( (!kickS.getGlobalBounds().contains(mousePosF) && fastKickS.getGlobalBounds().contains(mousePosF) && !reverseKickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 3 ) {
                         fastKickS.setColor(Color::Green);
                         attack = 5;
                     }
-                    if ( (!fastKickS.getGlobalBounds().contains(mousePosF2) && reverseKickS.getGlobalBounds().contains(mousePosF2) && !knifeS.getGlobalBounds().contains(mousePosF2))&& this->screen >= 3 ) {
+                    if ( (!fastKickS.getGlobalBounds().contains(mousePosF) && reverseKickS.getGlobalBounds().contains(mousePosF) && !knifeS.getGlobalBounds().contains(mousePosF))&& this->screen >= 3 ) {
                         reverseKickS.setColor(Color::Green);
                         attack = 6;
                     }
-                    if ( (!reverseKickS.getGlobalBounds().contains(mousePosF2) && knifeS.getGlobalBounds().contains(mousePosF2) && !hammerS.getGlobalBounds().contains(mousePosF2)) && this->screen >= 4 ) {
+                    if ( (!reverseKickS.getGlobalBounds().contains(mousePosF) && knifeS.getGlobalBounds().contains(mousePosF) && !hammerS.getGlobalBounds().contains(mousePosF)) && this->screen >= 4 ) {
                         knifeS.setColor(Color::Green);
                         attack = 7;
                     }
-                    if ( (!knifeS.getGlobalBounds().contains(mousePosF2) && hammerS.getGlobalBounds().contains(mousePosF2) && !swordS.getGlobalBounds().contains(mousePosF2)) && this->screen >= 4 ) {
+                    if ( (!knifeS.getGlobalBounds().contains(mousePosF) && hammerS.getGlobalBounds().contains(mousePosF) && !swordS.getGlobalBounds().contains(mousePosF)) && this->screen >= 4 ) {
                         hammerS.setColor(Color::Green);
                         attack = 8;
                     }
-                    if ( (!hammerS.getGlobalBounds().contains(mousePosF2) && swordS.getGlobalBounds().contains(mousePosF2) && !arrowS.getGlobalBounds().contains(mousePosF2)) && this->screen >= 5 ) {
+                    if ( (!hammerS.getGlobalBounds().contains(mousePosF) && swordS.getGlobalBounds().contains(mousePosF) && !arrowS.getGlobalBounds().contains(mousePosF)) && this->screen >= 5 ) {
                         swordS.setColor(Color::Green);
                         attack = 9;
                     }
-                    if ( (!swordS.getGlobalBounds().contains(mousePosF2) && arrowS.getGlobalBounds().contains(mousePosF2)) && this->screen >= 5 ) {
+                    if ( (!swordS.getGlobalBounds().contains(mousePosF) && arrowS.getGlobalBounds().contains(mousePosF)) && this->screen >= 5 ) {
                         arrowS.setColor(Color::Green);
                         attack = 10;
                     }
@@ -277,13 +276,12 @@ void window::iniciar(int cant, string route) {
                     ///****************************************************************************
 
                     /// Valida que el click este dentro del laberinto
-                    if ( labImage.getGlobalBounds().contains(mousePosF2) ||
-                         labImage.getGlobalBounds().contains(mousePosF)) {
+                    if ( labImage.getGlobalBounds().contains(mousePosF)) {
                         int pos_mouse[2];
                         /// Localiza hasta que posicion de la matriz debe moverse el sprite
                         for (int i = 0; i <= 42; i++) {
-                            if ((matriz1.matriz_pixels[0][i].x < mousePosF.x - (i * 3) &&
-                                 matriz1.matriz_pixels[0][i + 1].x > mousePosF.x - (i * 3)) ||
+                            if ((matriz1.matriz_pixels[0][i].x < mousePosF.x &&
+                                 matriz1.matriz_pixels[0][i + 1].x > mousePosF.x) ||
                                 (matriz1.matriz_pixels[0][i].x < mousePosF.x && mousePosF.x >= 971 && i == 42)) {
                                 pos_mouse[0] = i;
                                 for (int j = 0; j <= 22; j++) {
