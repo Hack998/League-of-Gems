@@ -6,7 +6,10 @@
 #include <random>
 #include "soldado.h"
 #include "Enemigo.h"
-#include "Inicio.h"
+#include "PathFinding.h"
+#include "Dijkstra.h"
+#include "Prim.h"
+#include "Kruskal.h"
 
 typedef soldado ejercito;
 
@@ -30,11 +33,11 @@ void window::iniciar(int cant, string route) {
 
     ///****************** CONSOLA *******************
     ///**********************************************
-    RectangleShape console(Vector2f(193,337));
+    RectangleShape console(Vector2f(193, 337));
     console.setFillColor(Color::Black);
     console.setOutlineColor(Color::Cyan);
     console.setOutlineThickness(3);
-    console.setPosition(Vector2f(1003,340));
+    console.setPosition(Vector2f(1003, 340));
 
     Font font;
     font.loadFromFile("../font/cour.ttf");
@@ -45,11 +48,11 @@ void window::iniciar(int cant, string route) {
     csTitle.setColor(Color::White);
     csTitle.setStyle(Text::Bold);
     csTitle.setString("Console:");
-    csTitle.setPosition(Vector2f(1010,345));
+    csTitle.setPosition(Vector2f(1010, 345));
 
     Text text;
     text.setFont(font);
-    string impresion = "";
+    string impresion;
 
     Text algUso;
     algUso.setFont(font);
@@ -141,7 +144,7 @@ void window::iniciar(int cant, string route) {
     for (int i = 0; i < cant; i++) {
         if ( cant_1 < 5 ) {
             matriz1.matriz_pos[y][h] = 2;
-            array_e[i].setPosicion(y,h);
+            array_e[i].setPosicion(y, h);
             cant_1++;
             y++;
             if ( cant_1 == 3 ) {
@@ -163,7 +166,7 @@ void window::iniciar(int cant, string route) {
                 h = dis(gen);
             }
             matriz1.matriz_pos[10 + y][39 + h] = 2;
-            array_e[i].setPosicion(10 + y,39 + h);
+            array_e[i].setPosicion(10 + y, 39 + h);
             cant_1++;
         }
         if ( cant_1 > 7 && cant_1 < cant ) {
@@ -179,7 +182,7 @@ void window::iniciar(int cant, string route) {
                     h = dis(gen);
                 }
                 matriz1.matriz_pos[0 + y][39 + h] = 2;
-                array_e[i].setPosicion(0 + y,39 + h);
+                array_e[i].setPosicion(0 + y, 39 + h);
                 fghj--;
             } else {
                 while (matriz1.matriz_pos[13 + y][39 + h] == 2) {
@@ -187,7 +190,7 @@ void window::iniciar(int cant, string route) {
                     h = dis(gen);
                 }
                 matriz1.matriz_pos[13 + y][39 + h] = 2;
-                array_e[i].setPosicion(13 + y,39 + h);
+                array_e[i].setPosicion(13 + y, 39 + h);
             }
             cant_1++;
         }
@@ -215,7 +218,7 @@ void window::iniciar(int cant, string route) {
                     window.close();
                 }
                     break;
-                // Hacer click
+                    // Hacer click
                 case Event::MouseButtonPressed: {
 
                     Vector2i mousePos = Mouse::getPosition(window);
@@ -226,50 +229,69 @@ void window::iniciar(int cant, string route) {
 
                     ///************************ COMPRUEBA CLICK EN ATAQUES ************************
                     ///****************************************************************************
-                    if ( punchS.getGlobalBounds().contains(mousePosF) && !uppercutS.getGlobalBounds().contains(mousePosF)) {
+                    if ( punchS.getGlobalBounds().contains(mousePosF) &&
+                         !uppercutS.getGlobalBounds().contains(mousePosF)) {
                         punchS.setColor(Color::Green);
                         attack = 1;
                     }
-                    if ( !punchS.getGlobalBounds().contains(mousePosF) && uppercutS.getGlobalBounds().contains(mousePosF) && !fPunchS.getGlobalBounds().contains(mousePosF)) {
+                    if ( !punchS.getGlobalBounds().contains(mousePosF) &&
+                         uppercutS.getGlobalBounds().contains(mousePosF) &&
+                         !fPunchS.getGlobalBounds().contains(mousePosF)) {
                         uppercutS.setColor(Color::Green);
                         attack = 2;
                     }
-                    if ( (!uppercutS.getGlobalBounds().contains(mousePosF) && fPunchS.getGlobalBounds().contains(mousePosF) && !kickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 2 ) {
+                    if ((!uppercutS.getGlobalBounds().contains(mousePosF) &&
+                         fPunchS.getGlobalBounds().contains(mousePosF) &&
+                         !kickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 2 ) {
                         fPunchS.setColor(Color::Green);
                         attack = 3;
                     }
-                    if ( (!fPunchS.getGlobalBounds().contains(mousePosF) && kickS.getGlobalBounds().contains(mousePosF) && !fastKickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 2 ) {
+                    if ((!fPunchS.getGlobalBounds().contains(mousePosF) &&
+                         kickS.getGlobalBounds().contains(mousePosF) &&
+                         !fastKickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 2 ) {
                         kickS.setColor(Color::Green);
                         attack = 4;
                     }
-                    if ( (!kickS.getGlobalBounds().contains(mousePosF) && fastKickS.getGlobalBounds().contains(mousePosF) && !reverseKickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 3 ) {
+                    if ((!kickS.getGlobalBounds().contains(mousePosF) &&
+                         fastKickS.getGlobalBounds().contains(mousePosF) &&
+                         !reverseKickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 3 ) {
                         fastKickS.setColor(Color::Green);
                         attack = 5;
                     }
-                    if ( (!fastKickS.getGlobalBounds().contains(mousePosF) && reverseKickS.getGlobalBounds().contains(mousePosF) && !knifeS.getGlobalBounds().contains(mousePosF))&& this->screen >= 3 ) {
+                    if ((!fastKickS.getGlobalBounds().contains(mousePosF) &&
+                         reverseKickS.getGlobalBounds().contains(mousePosF) &&
+                         !knifeS.getGlobalBounds().contains(mousePosF)) && this->screen >= 3 ) {
                         reverseKickS.setColor(Color::Green);
                         attack = 6;
                     }
-                    if ( (!reverseKickS.getGlobalBounds().contains(mousePosF) && knifeS.getGlobalBounds().contains(mousePosF) && !hammerS.getGlobalBounds().contains(mousePosF)) && this->screen >= 4 ) {
+                    if ((!reverseKickS.getGlobalBounds().contains(mousePosF) &&
+                         knifeS.getGlobalBounds().contains(mousePosF) &&
+                         !hammerS.getGlobalBounds().contains(mousePosF)) && this->screen >= 4 ) {
                         knifeS.setColor(Color::Green);
                         attack = 7;
                     }
-                    if ( (!knifeS.getGlobalBounds().contains(mousePosF) && hammerS.getGlobalBounds().contains(mousePosF) && !swordS.getGlobalBounds().contains(mousePosF)) && this->screen >= 4 ) {
+                    if ((!knifeS.getGlobalBounds().contains(mousePosF) &&
+                         hammerS.getGlobalBounds().contains(mousePosF) &&
+                         !swordS.getGlobalBounds().contains(mousePosF)) && this->screen >= 4 ) {
                         hammerS.setColor(Color::Green);
                         attack = 8;
                     }
-                    if ( (!hammerS.getGlobalBounds().contains(mousePosF) && swordS.getGlobalBounds().contains(mousePosF) && !arrowS.getGlobalBounds().contains(mousePosF)) && this->screen >= 5 ) {
+                    if ((!hammerS.getGlobalBounds().contains(mousePosF) &&
+                         swordS.getGlobalBounds().contains(mousePosF) &&
+                         !arrowS.getGlobalBounds().contains(mousePosF)) && this->screen >= 5 ) {
                         swordS.setColor(Color::Green);
                         attack = 9;
                     }
-                    if ( (!swordS.getGlobalBounds().contains(mousePosF) && arrowS.getGlobalBounds().contains(mousePosF)) && this->screen >= 5 ) {
+                    if ((!swordS.getGlobalBounds().contains(mousePosF) &&
+                         arrowS.getGlobalBounds().contains(mousePosF)) && this->screen >= 5 ) {
                         arrowS.setColor(Color::Green);
                         attack = 10;
                     }
 
-                    Sprite* attacks[10] = {&punchS, &uppercutS, &fPunchS, &kickS, &fastKickS, &reverseKickS, &knifeS, &hammerS, &swordS, &arrowS};
+                    Sprite *attacks[10] = {&punchS, &uppercutS, &fPunchS, &kickS, &fastKickS, &reverseKickS, &knifeS,
+                                           &hammerS, &swordS, &arrowS};
                     for (int l = 0; l < 10; ++l) {
-                        if(l+1 != attack){
+                        if ( l + 1 != attack ) {
                             attacks[l]->setColor(Color::White);
                         }
                     }
@@ -304,8 +326,28 @@ void window::iniciar(int cant, string route) {
                         for (int k = 0; k < 15; k++) {
                             int xz = array_s[k].cuerpo.x; /// Posicion inicial del sprite en x
                             int yz = array_s[k].cuerpo.y; /// Posicion inicial del sprite en y
-                            string path = Inicio::pathFind(Location(xz, yz), Location(pos_mouse[1], pos_mouse[0]),
-                                                           matriz1);
+                            string path;
+                            switch (screen) {
+                                case 1:
+                                    path = PathFinding::pathFind(Location(xz, yz), Location(pos_mouse[1], pos_mouse[0]),
+                                                                 matriz1);
+                                    break;
+                                case 2:
+                                    path = Prim::prim(Lugar(xz, yz, 0), Lugar(pos_mouse[1], pos_mouse[0], 2), matriz1);
+                                    break;
+                                case 3:
+                                    path = Kruskal::kruskal(nodo(xz, yz, 0), nodo(pos_mouse[1], pos_mouse[0], 2),
+                                                            matriz1);
+                                    break;
+                                case 4:
+                                    path = Dijkstra::dijkstra(Posicion(xz, yz), Posicion(pos_mouse[1], pos_mouse[0]),
+                                                              matriz1);
+                                    break;
+                                case 5:
+                                    path = PathFinding::pathFind(Location(xz, yz), Location(pos_mouse[1], pos_mouse[0]),
+                                                                 matriz1);
+                                    break;
+                            }
                             cout << path << endl;
                             for (int b = 0; b < path.length(); b++) {
                                 if ( path.substr(b, 1) == "0" ) {
@@ -325,14 +367,23 @@ void window::iniciar(int cant, string route) {
                         }
 
                         ejercito *mu = array_s;
+                        matriz1.matriz_pos[11][42] = 4;
+                        for (int i = 0; i <= 22; i++) {
+                            for (int j = 0; j <= 42; j++) {
+                                if ( matriz1.matriz_pos[i][j] == 9 )
+                                    matriz1.matriz_pos[i][j] = 0;
+                            }
+                        }
                         int gh = 0;
                         while (ismove(mu)) {
                             for (int v = 0; v < 15; v++) {
                                 if ( array_s[v].cabeza != nullptr &&
-                                     matriz1.matriz_pos[array_s[v].cabeza->x][array_s[v].cabeza->y] != 1 ) {
-                                    matriz1.matriz_pos[array_s[v].cuerpo.x][array_s[v].cuerpo.y] = 0;
+                                     matriz1.matriz_pos[array_s[v].cabeza->x][array_s[v].cabeza->y] != 1 &&
+                                     array_s[v].cuerpo.vida != 0 ) {
+                                    matriz1.matriz_pos[array_s[v].cuerpo.x][array_s[v].cuerpo.y] = 9;
                                     array_s[v].cuerpo.x = array_s[v].cabeza->x;
-                                    array_s[v].cuerpo.y = array_s[v].cabeza->y;matriz1.matriz_pos[array_s[v].cuerpo.x][array_s[v].cuerpo.y] = 1;
+                                    array_s[v].cuerpo.y = array_s[v].cabeza->y;
+                                    matriz1.matriz_pos[array_s[v].cuerpo.x][array_s[v].cuerpo.y] = 1;
                                     array_s[v].eliminar();
                                     gh++;
                                 }
@@ -347,9 +398,96 @@ void window::iniciar(int cant, string route) {
                                 gh = 0;
                         }
 
+                        //Reprinteo
+                        if ( matriz1.matriz_pos[11][42] == 1 ) {
+                            if ( screen != 5 ) {
+                                matriz1 = iniciar_matriz();
+                                x = 3;
+                                for (int i = 0; i < 15; i++) {
+                                    if ( i + 3 == 10 )
+                                        x = 5;
+                                    ejercito temp;
+                                    temp.crear(100, 5, i + x, 0);
+                                    matriz1.matriz_pos[i + x][0] = 1;
+                                    array_s[i] = temp;
+                                }
+
+                                array_e->ordenarArray(cant, array_e);
+                                array_e->combinacion(cant, array_e);
+                                for (int a = 0; a < cant; a++) {
+                                    cout << "Ataque: " << array_e[a].ataque << "; Vida: " << array_e[a].vida
+                                         << "; Nivel: "
+                                         << array_e[a].nivel << endl;
+                                }
+
+                                //
+                                cant_1 = 0;
+                                y = 10;
+                                h = 41;
+                                fghj = ((cant - 8) / 2);
+                                for (int i = 0; i < cant; i++) {
+                                    if ( cant_1 < 5 ) {
+                                        matriz1.matriz_pos[y][h] = 2;
+                                        cant_1++;
+                                        y++;
+                                        if ( cant_1 == 3 ) {
+                                            y = 10;
+                                            h++;
+                                        }
+                                        if ( cant_1 == 4 )
+                                            y = 12;
+                                    }
+                                    if ( cant_1 > 4 && cant_1 < 8 ) {
+                                        random_device rd;
+                                        mt19937 gen(rd());
+                                        uniform_int_distribution<> dis(0, 1);
+                                        uniform_int_distribution<> dis_1(0, 2);
+                                        y = dis_1(gen);
+                                        h = dis(gen);
+                                        while (matriz1.matriz_pos[10 + y][39 + h] == 2) {
+                                            y = dis_1(gen);
+                                            h = dis(gen);
+                                        }
+                                        matriz1.matriz_pos[10 + y][39 + h] = 2;
+                                        cant_1++;
+                                    }
+                                    if ( cant_1 > 7 && cant_1 < cant ) {
+                                        random_device rd;
+                                        mt19937 gen(rd());
+                                        uniform_int_distribution<> dis(0, 3);
+                                        uniform_int_distribution<> dis_1(0, 9);
+                                        y = dis_1(gen);
+                                        h = dis(gen);
+                                        if ( fghj != 0 ) {
+                                            while (matriz1.matriz_pos[0 + y][39 + h] == 2) {
+                                                y = dis_1(gen);
+                                                h = dis(gen);
+                                            }
+                                            matriz1.matriz_pos[0 + y][39 + h] = 2;
+                                            fghj--;
+                                        } else {
+                                            while (matriz1.matriz_pos[13 + y][39 + h] == 2) {
+                                                y = dis_1(gen);
+                                                h = dis(gen);
+                                            }
+                                            matriz1.matriz_pos[13 + y][39 + h] = 2;
+                                        }
+                                        cant_1++;
+                                    }
+                                }
+                                //
+
+
+                                impresion += "\nSiguiente Nivel Cargado";
+                                screen++;
+                            } else {
+                                impresion += "\nHas Ganado";
+                            }
+                        }
+
                         ///********************* COMPRUEBA ENEMIGOS CERCA **************************
                         ///*************************************************************************
-                        if(this->enemigoCerca(&matriz1, array_e, &tempE, &tempS, cant)) {
+                        if ( this->enemigoCerca(&matriz1, array_e, &tempE, &tempS, cant)) {
                             this->checkLines(&lines, &impresion);
                             impresion += "\nEnemigo se acerca!";
                         }
@@ -360,56 +498,74 @@ void window::iniciar(int cant, string route) {
                     }
                 }
                     break;
-                // Movimiento del mouse
+                    // Movimiento del mouse
                 case Event::MouseMoved: {
                     Vector2i mousePos = Mouse::getPosition(window);
-                    Vector2f mousePosF(static_cast<float>(mousePos.x-77), static_cast<float>(mousePos.y));
-                    if ( punchS.getGlobalBounds().contains(mousePosF) && !uppercutS.getGlobalBounds().contains(mousePosF)) {
+                    Vector2f mousePosF(static_cast<float>(mousePos.x - 77), static_cast<float>(mousePos.y));
+                    if ( punchS.getGlobalBounds().contains(mousePosF) &&
+                         !uppercutS.getGlobalBounds().contains(mousePosF)) {
                         punchS.setPosition(Vector2f(0, 598));
                     } else {
                         punchS.setPosition(Vector2f(0, 600));
                     }
-                    if ( !punchS.getGlobalBounds().contains(mousePosF) && uppercutS.getGlobalBounds().contains(mousePosF) && !fPunchS.getGlobalBounds().contains(mousePosF)) {
+                    if ( !punchS.getGlobalBounds().contains(mousePosF) &&
+                         uppercutS.getGlobalBounds().contains(mousePosF) &&
+                         !fPunchS.getGlobalBounds().contains(mousePosF)) {
                         uppercutS.setPosition(Vector2f(100, 598));
                     } else {
                         uppercutS.setPosition(Vector2f(100, 600));
                     }
-                    if ( (!uppercutS.getGlobalBounds().contains(mousePosF) && fPunchS.getGlobalBounds().contains(mousePosF) && !kickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 2 ) {
+                    if ((!uppercutS.getGlobalBounds().contains(mousePosF) &&
+                         fPunchS.getGlobalBounds().contains(mousePosF) &&
+                         !kickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 2 ) {
                         fPunchS.setPosition(Vector2f(200, 598));
                     } else {
                         fPunchS.setPosition(Vector2f(200, 600));
                     }
-                    if ( (!fPunchS.getGlobalBounds().contains(mousePosF) && kickS.getGlobalBounds().contains(mousePosF) && !fastKickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 2 ) {
+                    if ((!fPunchS.getGlobalBounds().contains(mousePosF) &&
+                         kickS.getGlobalBounds().contains(mousePosF) &&
+                         !fastKickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 2 ) {
                         kickS.setPosition(Vector2f(300, 598));
                     } else {
                         kickS.setPosition(Vector2f(300, 600));
                     }
-                    if ( (!kickS.getGlobalBounds().contains(mousePosF) && fastKickS.getGlobalBounds().contains(mousePosF) && !reverseKickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 3 ) {
+                    if ((!kickS.getGlobalBounds().contains(mousePosF) &&
+                         fastKickS.getGlobalBounds().contains(mousePosF) &&
+                         !reverseKickS.getGlobalBounds().contains(mousePosF)) && this->screen >= 3 ) {
                         fastKickS.setPosition(Vector2f(400, 598));
                     } else {
                         fastKickS.setPosition(Vector2f(400, 600));
                     }
-                    if ( (!fastKickS.getGlobalBounds().contains(mousePosF) && reverseKickS.getGlobalBounds().contains(mousePosF) && !knifeS.getGlobalBounds().contains(mousePosF))&& this->screen >= 3 ) {
+                    if ((!fastKickS.getGlobalBounds().contains(mousePosF) &&
+                         reverseKickS.getGlobalBounds().contains(mousePosF) &&
+                         !knifeS.getGlobalBounds().contains(mousePosF)) && this->screen >= 3 ) {
                         reverseKickS.setPosition(Vector2f(500, 598));
                     } else {
                         reverseKickS.setPosition(Vector2f(500, 600));
                     }
-                    if ( (!reverseKickS.getGlobalBounds().contains(mousePosF) && knifeS.getGlobalBounds().contains(mousePosF) && !hammerS.getGlobalBounds().contains(mousePosF)) && this->screen >= 4 ) {
+                    if ((!reverseKickS.getGlobalBounds().contains(mousePosF) &&
+                         knifeS.getGlobalBounds().contains(mousePosF) &&
+                         !hammerS.getGlobalBounds().contains(mousePosF)) && this->screen >= 4 ) {
                         knifeS.setPosition(Vector2f(600, 598));
                     } else {
                         knifeS.setPosition(Vector2f(600, 600));
                     }
-                    if ( (!knifeS.getGlobalBounds().contains(mousePosF) && hammerS.getGlobalBounds().contains(mousePosF) && !swordS.getGlobalBounds().contains(mousePosF)) && this->screen >= 4 ) {
+                    if ((!knifeS.getGlobalBounds().contains(mousePosF) &&
+                         hammerS.getGlobalBounds().contains(mousePosF) &&
+                         !swordS.getGlobalBounds().contains(mousePosF)) && this->screen >= 4 ) {
                         hammerS.setPosition(Vector2f(700, 598));
                     } else {
                         hammerS.setPosition(Vector2f(700, 600));
                     }
-                    if ( (!hammerS.getGlobalBounds().contains(mousePosF) && swordS.getGlobalBounds().contains(mousePosF) && !arrowS.getGlobalBounds().contains(mousePosF)) && this->screen >= 5 ) {
+                    if ((!hammerS.getGlobalBounds().contains(mousePosF) &&
+                         swordS.getGlobalBounds().contains(mousePosF) &&
+                         !arrowS.getGlobalBounds().contains(mousePosF)) && this->screen >= 5 ) {
                         swordS.setPosition(Vector2f(800, 598));
                     } else {
                         swordS.setPosition(Vector2f(800, 600));
                     }
-                    if ( (!swordS.getGlobalBounds().contains(mousePosF) && arrowS.getGlobalBounds().contains(mousePosF)) && this->screen >= 5 ) {
+                    if ((!swordS.getGlobalBounds().contains(mousePosF) &&
+                         arrowS.getGlobalBounds().contains(mousePosF)) && this->screen >= 5 ) {
                         arrowS.setPosition(Vector2f(900, 598));
                     } else {
                         arrowS.setPosition(Vector2f(900, 600));
@@ -470,12 +626,12 @@ void window::iniciar(int cant, string route) {
         ///**********************************************
         algUso.setCharacterSize(12);
         algUso.setColor(Color::White);
-        algUso.setPosition(Vector2f(1010,360));
+        algUso.setPosition(Vector2f(1010, 360));
 
         text.setString(impresion);
         text.setCharacterSize(12);
         text.setColor(Color::White);
-        text.setPosition(Vector2f(1010,375));
+        text.setPosition(Vector2f(1010, 375));
         ///**********************************************
 
         window.draw(csTitle);
@@ -495,7 +651,7 @@ void window::iniciar(int cant, string route) {
         window.draw(labImage);
 
         Texture s_texture;
-        if (!s_texture.loadFromFile(route + "soldierSheet.png"))
+        if ( !s_texture.loadFromFile(route + "soldierSheet.png"))
             cout << "Can't find the image" << endl;
         IntRect s_rectSourceSprite(10, 10, 30, 30);
         Sprite aliado(s_texture, s_rectSourceSprite);
@@ -521,6 +677,16 @@ void window::iniciar(int cant, string route) {
                 grassS.setTexture(grass);
                 window.draw(grassS);
 
+                if ( matriz1.matriz_pos[i][j] == 9 ) {
+                    Sprite route_i;
+                    Texture texture;
+                    if ( !texture.loadFromFile(route + "ninja.png"))
+                        cout << "Can't find the image" << endl;
+                    route_i.setPosition(matriz1.matriz_pixels[i][j]);
+                    route_i.setTexture(texture);
+                    window.draw(route_i);
+                }
+
                 if ( matriz1.matriz_pos[i][j] == -1 ) {
                     Sprite obstaculo;
                     Texture texture;
@@ -530,48 +696,49 @@ void window::iniciar(int cant, string route) {
                     obstaculo.setTexture(texture);
                     window.draw(obstaculo);
                 }
-                if (matriz1.matriz_pos[i][j] == 1 ) {
+                if ( matriz1.matriz_pos[i][j] == 1 ) {
                     RectangleShape line;
-                    line.setSize(Vector2f(20.0,3.0));
-                    line.setPosition(Vector2f(matriz1.matriz_pixels[i][j].x + 5, matriz1.matriz_pixels[i][j].y-2));
+                    line.setSize(Vector2f(20.0, 3.0));
+                    line.setPosition(Vector2f(matriz1.matriz_pixels[i][j].x + 5, matriz1.matriz_pixels[i][j].y - 2));
                     line.setFillColor(Color::Green);
                     window.draw(line);
 
-                    if(clock.getElapsedTime().asMilliseconds() > 500 && tempE.vida > 0 && tempS.cuerpo.vida > 0 && enemigoCerca(matriz1.matriz_pos, i, j)){
+                    if ( clock.getElapsedTime().asMilliseconds() > 500 && tempE.vida > 0 && tempS.cuerpo.vida > 0 &&
+                         enemigoCerca(matriz1.matriz_pos, i, j)) {
                         validarAtaque(&s_rectSourceSprite, attack);
 
                         std::cout << "Vida Enemigo Antes: " << tempE.vida << std::endl;
                         tempS.atacar(attack, &tempE);
                         std::cout << "Vida Enemigo Despues: " << tempE.vida << std::endl;
 
-                        if(soldadoCerca(matriz1.matriz_pos, tempE.x, tempE.y)) {
+                        if ( soldadoCerca(matriz1.matriz_pos, tempE.x, tempE.y)) {
                             e_rectSourceSprite.left = 0;
                             e_rectSourceSprite.top = 35;
 
                             std::cout << "Vida Soldado Antes: " << tempS.cuerpo.vida << std::endl;
                             tempE.atacar(&tempS);
                             std::cout << "Vida Soldado Despues: " << tempS.cuerpo.vida << std::endl;
-                        }else{
+                        } else {
                             e_rectSourceSprite.left = 120;
                             e_rectSourceSprite.top = 35;
                         }
 
-                        if(tempE.vida > 0 || tempS.cuerpo.vida > 0){
+                        if ( tempE.vida > 0 || tempS.cuerpo.vida > 0 ) {
                             clock.restart();
                         }
 
-                        if(tempE.vida <= 0){
+                        if ( tempE.vida <= 0 ) {
                             this->checkLines(&lines, &impresion);
                             impresion += "\nEnemigo eliminado...";
                             matriz1.matriz_pos[tempE.x][tempE.y] = 0;
                             this->enemigoCerca(&matriz1, array_e, &tempE, &tempS, cant);
-                        }else if(tempS.cuerpo.vida <= 0){
+                        } else if ( tempS.cuerpo.vida <= 0 ) {
                             this->checkLines(&lines, &impresion);
                             impresion += "\nSoldado Caido...";
                             matriz1.matriz_pos[tempS.cuerpo.x][tempS.cuerpo.y] = 0;
                             this->enemigoCerca(&matriz1, array_e, &tempE, &tempS, cant);
                         }
-                    }else{
+                    } else {
                         s_rectSourceSprite.left = 10;
                         s_rectSourceSprite.top = 10;
 
@@ -585,12 +752,12 @@ void window::iniciar(int cant, string route) {
                 }
                 if ( matriz1.matriz_pos[i][j] == 2 ) {
                     RectangleShape line;
-                    line.setSize(Vector2f(20.0,3.0));
-                    line.setPosition(Vector2f(matriz1.matriz_pixels[i][j].x + 2, matriz1.matriz_pixels[i][j].y-2));
+                    line.setSize(Vector2f(20.0, 3.0));
+                    line.setPosition(Vector2f(matriz1.matriz_pixels[i][j].x + 2, matriz1.matriz_pixels[i][j].y - 2));
                     line.setFillColor(Color::Red);
                     window.draw(line);
 
-                    if(tempE.y != j){
+                    if ( tempE.y != j ) {
                         e_rectSourceSprite.left = 120;
                         e_rectSourceSprite.top = 35;
                     }
@@ -600,37 +767,37 @@ void window::iniciar(int cant, string route) {
                     enemigo.setPosition(Vector2f(vector2f.x, vector2f.y + 1));
                     window.draw(enemigo);
                 }
-                if( matriz1.matriz_pos[i][j] == 4){
+                if ( matriz1.matriz_pos[i][j] == 4 ) {
                     Texture gem;
                     Sprite gemS;
-                    switch(this->screen){
+                    switch (this->screen) {
                         case 1:
-                            if(!gem.loadFromFile(route + "gem1.png")){
+                            if ( !gem.loadFromFile(route + "gem1.png")) {
                                 std::cout << "Can't find the image" << std::endl;
                             }
                             break;
                         case 2:
-                            if(!gem.loadFromFile(route + "gem2.png")){
+                            if ( !gem.loadFromFile(route + "gem2.png")) {
                                 std::cout << "Can't find the image" << std::endl;
                             }
                             break;
                         case 3:
-                            if(!gem.loadFromFile(route + "gem3.png")){
+                            if ( !gem.loadFromFile(route + "gem3.png")) {
                                 std::cout << "Can't find the image" << std::endl;
                             }
                             break;
                         case 4:
-                            if(!gem.loadFromFile(route + "gem4.png")){
+                            if ( !gem.loadFromFile(route + "gem4.png")) {
                                 std::cout << "Can't find the image" << std::endl;
                             }
                             break;
                         case 5:
-                            if(!gem.loadFromFile(route + "gem5.png")){
+                            if ( !gem.loadFromFile(route + "gem5.png")) {
                                 std::cout << "Can't find the image" << std::endl;
                             }
                             break;
                     }
-                    if(matriz1.matriz_pos[i][j] == 0){
+                    if ( matriz1.matriz_pos[i][j] == 0 ) {
                         window.draw(grassS);
                     }
                     gemS.setPosition(matriz1.matriz_pixels[i][j]);
@@ -685,41 +852,34 @@ bool window::ismove(ejercito *lo) {
     return false;
 }
 
-// Busca la posicion del mouse al hacer click
-int* window::buscarMouse() {
 
-}
-
-void window::checkLines(int* lines, string* impresion){
-    if(*lines <= 20) {
+void window::checkLines(int *lines, string *impresion) {
+    if ( *lines <= 20 ) {
         *lines += 1;
-    }else{
+    } else {
         *impresion = "";
         *lines = 0;
     }
 }
 
-bool window::enemigoCerca(matriz* matriz1, Enemigo* array_e, Enemigo* tempE, soldado* tempS, int cant) {
-    for(int i = 0; i < 15; i++) {
-        int pos[2] = {-1,-1};
-        if (matriz1->matriz_pos[array_s[i].cuerpo.x][array_s[i].cuerpo.y - 1] == 2) {
+bool window::enemigoCerca(matriz *matriz1, Enemigo *array_e, Enemigo *tempE, soldado *tempS, int cant) {
+    for (int i = 0; i < 15; i++) {
+        int pos[2] = {-1, -1};
+        if ( matriz1->matriz_pos[array_s[i].cuerpo.x][array_s[i].cuerpo.y - 1] == 2 ) {
             pos[0] = array_s[i].cuerpo.x;
-            pos[1] = array_s[i].cuerpo.y-1;
-        }
-        else if (matriz1->matriz_pos[array_s[i].cuerpo.x - 1][array_s[i].cuerpo.y] == 2){
-            pos[0] = array_s[i].cuerpo.x-1;
+            pos[1] = array_s[i].cuerpo.y - 1;
+        } else if ( matriz1->matriz_pos[array_s[i].cuerpo.x - 1][array_s[i].cuerpo.y] == 2 ) {
+            pos[0] = array_s[i].cuerpo.x - 1;
             pos[1] = array_s[i].cuerpo.y;
-        }
-        else if (matriz1->matriz_pos[array_s[i].cuerpo.x][array_s[i].cuerpo.y + 1] == 2){
+        } else if ( matriz1->matriz_pos[array_s[i].cuerpo.x][array_s[i].cuerpo.y + 1] == 2 ) {
             pos[0] = array_s[i].cuerpo.x;
-            pos[1] = array_s[i].cuerpo.y+1;
-        }
-        else if (matriz1->matriz_pos[array_s[i].cuerpo.x + 1][array_s[i].cuerpo.y] == 2){
-            pos[0] = array_s[i].cuerpo.x+1;
+            pos[1] = array_s[i].cuerpo.y + 1;
+        } else if ( matriz1->matriz_pos[array_s[i].cuerpo.x + 1][array_s[i].cuerpo.y] == 2 ) {
+            pos[0] = array_s[i].cuerpo.x + 1;
             pos[1] = array_s[i].cuerpo.y;
         }
 
-        if(pos[0] != -1 && pos[1] != -1) {
+        if ( pos[0] != -1 && pos[1] != -1 ) {
             *tempE = em.buscarPorPos(pos[0], pos[1], array_e, cant);
             *tempS = array_s[i];
             return true;
@@ -729,16 +889,16 @@ bool window::enemigoCerca(matriz* matriz1, Enemigo* array_e, Enemigo* tempE, sol
 }
 
 bool window::enemigoCerca(int matriz_pos[23][43], int i, int j) {
-    if(i == 0 || j == 0){
+    if ( i == 0 || j == 0 ) {
         return false;
     }
-    if (matriz_pos[i][j-1] == 2) {
+    if ( matriz_pos[i][j - 1] == 2 ) {
         return true;
-    } else if (matriz_pos[i-1][j] == 2) {
+    } else if ( matriz_pos[i - 1][j] == 2 ) {
         return true;
-    } else if (matriz_pos[i][j+1] == 2) {
+    } else if ( matriz_pos[i][j + 1] == 2 ) {
         return true;
-    } else if (matriz_pos[i+1][j] == 2) {
+    } else if ( matriz_pos[i + 1][j] == 2 ) {
         return true;
     } else {
         return false;
@@ -746,13 +906,13 @@ bool window::enemigoCerca(int matriz_pos[23][43], int i, int j) {
 }
 
 bool window::soldadoCerca(int matriz_pos[23][43], int i, int j) {
-    if (matriz_pos[i][j-1] == 1) {
+    if ( matriz_pos[i][j - 1] == 1 ) {
         return true;
-    } else if (matriz_pos[i-1][j] == 1) {
+    } else if ( matriz_pos[i - 1][j] == 1 ) {
         return true;
-    } else if (matriz_pos[i][j+1] == 1) {
+    } else if ( matriz_pos[i][j + 1] == 1 ) {
         return true;
-    } else if (matriz_pos[i+1][j] == 1) {
+    } else if ( matriz_pos[i + 1][j] == 1 ) {
         return true;
     } else {
         return false;
