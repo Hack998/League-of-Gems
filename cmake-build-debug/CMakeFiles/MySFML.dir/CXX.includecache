@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/davepj007/CLionProjects/League-of-Gems/Dijkstra.h
+string
+-
+window.h
+/home/davepj007/CLionProjects/League-of-Gems/window.h
+
 /home/davepj007/CLionProjects/League-of-Gems/Enemigo.h
 string
 -
@@ -16,7 +22,19 @@ stddef.h
 soldado.h
 /home/davepj007/CLionProjects/League-of-Gems/soldado.h
 
-/home/davepj007/CLionProjects/League-of-Gems/Inicio.h
+/home/davepj007/CLionProjects/League-of-Gems/Kruskal.h
+string
+-
+window.h
+/home/davepj007/CLionProjects/League-of-Gems/window.h
+
+/home/davepj007/CLionProjects/League-of-Gems/PathFinding.h
+string
+-
+window.h
+/home/davepj007/CLionProjects/League-of-Gems/window.h
+
+/home/davepj007/CLionProjects/League-of-Gems/Prim.h
 string
 -
 window.h
@@ -37,8 +55,14 @@ soldado.h
 /home/davepj007/CLionProjects/League-of-Gems/soldado.h
 Enemigo.h
 /home/davepj007/CLionProjects/League-of-Gems/Enemigo.h
-Inicio.h
-/home/davepj007/CLionProjects/League-of-Gems/Inicio.h
+PathFinding.h
+/home/davepj007/CLionProjects/League-of-Gems/PathFinding.h
+Dijkstra.h
+/home/davepj007/CLionProjects/League-of-Gems/Dijkstra.h
+Prim.h
+/home/davepj007/CLionProjects/League-of-Gems/Prim.h
+Kruskal.h
+/home/davepj007/CLionProjects/League-of-Gems/Kruskal.h
 
 /home/davepj007/CLionProjects/League-of-Gems/window.h
 string

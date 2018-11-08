@@ -109,18 +109,57 @@ CMakeFiles/MySFML.dir/Enemigo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MySFML.dir/Enemigo.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/davepj007/CLionProjects/League-of-Gems/Enemigo.cpp -o CMakeFiles/MySFML.dir/Enemigo.cpp.s
 
-CMakeFiles/MySFML.dir/Inicio.cpp.o: CMakeFiles/MySFML.dir/flags.make
-CMakeFiles/MySFML.dir/Inicio.cpp.o: ../Inicio.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MySFML.dir/Inicio.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MySFML.dir/Inicio.cpp.o -c /home/davepj007/CLionProjects/League-of-Gems/Inicio.cpp
+CMakeFiles/MySFML.dir/Dijkstra.cpp.o: CMakeFiles/MySFML.dir/flags.make
+CMakeFiles/MySFML.dir/Dijkstra.cpp.o: ../Dijkstra.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MySFML.dir/Dijkstra.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MySFML.dir/Dijkstra.cpp.o -c /home/davepj007/CLionProjects/League-of-Gems/Dijkstra.cpp
 
-CMakeFiles/MySFML.dir/Inicio.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MySFML.dir/Inicio.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/davepj007/CLionProjects/League-of-Gems/Inicio.cpp > CMakeFiles/MySFML.dir/Inicio.cpp.i
+CMakeFiles/MySFML.dir/Dijkstra.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MySFML.dir/Dijkstra.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/davepj007/CLionProjects/League-of-Gems/Dijkstra.cpp > CMakeFiles/MySFML.dir/Dijkstra.cpp.i
 
-CMakeFiles/MySFML.dir/Inicio.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MySFML.dir/Inicio.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/davepj007/CLionProjects/League-of-Gems/Inicio.cpp -o CMakeFiles/MySFML.dir/Inicio.cpp.s
+CMakeFiles/MySFML.dir/Dijkstra.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MySFML.dir/Dijkstra.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/davepj007/CLionProjects/League-of-Gems/Dijkstra.cpp -o CMakeFiles/MySFML.dir/Dijkstra.cpp.s
+
+CMakeFiles/MySFML.dir/Kruskal.cpp.o: CMakeFiles/MySFML.dir/flags.make
+CMakeFiles/MySFML.dir/Kruskal.cpp.o: ../Kruskal.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/MySFML.dir/Kruskal.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MySFML.dir/Kruskal.cpp.o -c /home/davepj007/CLionProjects/League-of-Gems/Kruskal.cpp
+
+CMakeFiles/MySFML.dir/Kruskal.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MySFML.dir/Kruskal.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/davepj007/CLionProjects/League-of-Gems/Kruskal.cpp > CMakeFiles/MySFML.dir/Kruskal.cpp.i
+
+CMakeFiles/MySFML.dir/Kruskal.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MySFML.dir/Kruskal.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/davepj007/CLionProjects/League-of-Gems/Kruskal.cpp -o CMakeFiles/MySFML.dir/Kruskal.cpp.s
+
+CMakeFiles/MySFML.dir/PathFinding.cpp.o: CMakeFiles/MySFML.dir/flags.make
+CMakeFiles/MySFML.dir/PathFinding.cpp.o: ../PathFinding.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/MySFML.dir/PathFinding.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MySFML.dir/PathFinding.cpp.o -c /home/davepj007/CLionProjects/League-of-Gems/PathFinding.cpp
+
+CMakeFiles/MySFML.dir/PathFinding.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MySFML.dir/PathFinding.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/davepj007/CLionProjects/League-of-Gems/PathFinding.cpp > CMakeFiles/MySFML.dir/PathFinding.cpp.i
+
+CMakeFiles/MySFML.dir/PathFinding.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MySFML.dir/PathFinding.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/davepj007/CLionProjects/League-of-Gems/PathFinding.cpp -o CMakeFiles/MySFML.dir/PathFinding.cpp.s
+
+CMakeFiles/MySFML.dir/Prim.cpp.o: CMakeFiles/MySFML.dir/flags.make
+CMakeFiles/MySFML.dir/Prim.cpp.o: ../Prim.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/MySFML.dir/Prim.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MySFML.dir/Prim.cpp.o -c /home/davepj007/CLionProjects/League-of-Gems/Prim.cpp
+
+CMakeFiles/MySFML.dir/Prim.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MySFML.dir/Prim.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/davepj007/CLionProjects/League-of-Gems/Prim.cpp > CMakeFiles/MySFML.dir/Prim.cpp.i
+
+CMakeFiles/MySFML.dir/Prim.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MySFML.dir/Prim.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/davepj007/CLionProjects/League-of-Gems/Prim.cpp -o CMakeFiles/MySFML.dir/Prim.cpp.s
 
 # Object files for target MySFML
 MySFML_OBJECTS = \
@@ -128,7 +167,10 @@ MySFML_OBJECTS = \
 "CMakeFiles/MySFML.dir/window.cpp.o" \
 "CMakeFiles/MySFML.dir/soldado.cpp.o" \
 "CMakeFiles/MySFML.dir/Enemigo.cpp.o" \
-"CMakeFiles/MySFML.dir/Inicio.cpp.o"
+"CMakeFiles/MySFML.dir/Dijkstra.cpp.o" \
+"CMakeFiles/MySFML.dir/Kruskal.cpp.o" \
+"CMakeFiles/MySFML.dir/PathFinding.cpp.o" \
+"CMakeFiles/MySFML.dir/Prim.cpp.o"
 
 # External object files for target MySFML
 MySFML_EXTERNAL_OBJECTS =
@@ -137,7 +179,10 @@ MySFML: CMakeFiles/MySFML.dir/main.cpp.o
 MySFML: CMakeFiles/MySFML.dir/window.cpp.o
 MySFML: CMakeFiles/MySFML.dir/soldado.cpp.o
 MySFML: CMakeFiles/MySFML.dir/Enemigo.cpp.o
-MySFML: CMakeFiles/MySFML.dir/Inicio.cpp.o
+MySFML: CMakeFiles/MySFML.dir/Dijkstra.cpp.o
+MySFML: CMakeFiles/MySFML.dir/Kruskal.cpp.o
+MySFML: CMakeFiles/MySFML.dir/PathFinding.cpp.o
+MySFML: CMakeFiles/MySFML.dir/Prim.cpp.o
 MySFML: CMakeFiles/MySFML.dir/build.make
 MySFML: /usr/lib/x86_64-linux-gnu/libsfml-system.so
 MySFML: /usr/lib/x86_64-linux-gnu/libsfml-window.so
@@ -145,7 +190,7 @@ MySFML: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
 MySFML: /usr/lib/x86_64-linux-gnu/libsfml-network.so
 MySFML: /usr/lib/x86_64-linux-gnu/libsfml-audio.so
 MySFML: CMakeFiles/MySFML.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable MySFML"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/davepj007/CLionProjects/League-of-Gems/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable MySFML"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MySFML.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

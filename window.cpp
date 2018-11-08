@@ -412,8 +412,8 @@ void window::iniciar(int cant, string route) {
                                     array_s[i] = temp;
                                 }
 
-                                array_e->ordenarArray(cant, array_e);
-                                array_e->combinacion(cant, array_e);
+                                array_e->ordenarArray(cant);
+                                array_e->combinacion(cant);
                                 for (int a = 0; a < cant; a++) {
                                     cout << "Ataque: " << array_e[a].ataque << "; Vida: " << array_e[a].vida
                                          << "; Nivel: "
@@ -501,7 +501,7 @@ void window::iniciar(int cant, string route) {
                     // Movimiento del mouse
                 case Event::MouseMoved: {
                     Vector2i mousePos = Mouse::getPosition(window);
-                    Vector2f mousePosF(static_cast<float>(mousePos.x - 77), static_cast<float>(mousePos.y));
+                    Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
                     if ( punchS.getGlobalBounds().contains(mousePosF) &&
                          !uppercutS.getGlobalBounds().contains(mousePosF)) {
                         punchS.setPosition(Vector2f(0, 598));
@@ -656,18 +656,20 @@ void window::iniciar(int cant, string route) {
         IntRect s_rectSourceSprite(10, 10, 30, 30);
         Sprite aliado(s_texture, s_rectSourceSprite);
 
+        RectangleShape line_s;
+        line_s.setSize(Vector2f(20.0, 3.0));
+
         Texture e_texture;
         if ( !e_texture.loadFromFile(route + "enemySheet.png"))
             cout << "Can't find the image" << endl;
         IntRect e_rectSourceSprite(120, 35, 30, 30);
         Sprite enemigo(e_texture, e_rectSourceSprite);
 
+        RectangleShape line_e;
+        line_e.setSize(Vector2f(20.0, 3.0));
+
         for (int i = 0; i <= 22; i++) {
             for (int j = 0; j <= 42; j++) {
-
-                /*if(tempE.vida <= 0 || tempS.cuerpo.vida <= 0){
-                    this->enemigoCerca(&matriz1, array_e, &tempE, &tempS, cant);
-                }*/
 
                 Texture grass;
                 Sprite grassS;
@@ -680,7 +682,7 @@ void window::iniciar(int cant, string route) {
                 if ( matriz1.matriz_pos[i][j] == 9 ) {
                     Sprite route_i;
                     Texture texture;
-                    if ( !texture.loadFromFile(route + "ninja.png"))
+                    if ( !texture.loadFromFile(route + "troddenGrass.png"))
                         cout << "Can't find the image" << endl;
                     route_i.setPosition(matriz1.matriz_pixels[i][j]);
                     route_i.setTexture(texture);
@@ -697,13 +699,8 @@ void window::iniciar(int cant, string route) {
                     window.draw(obstaculo);
                 }
                 if ( matriz1.matriz_pos[i][j] == 1 ) {
-                    RectangleShape line;
-                    line.setSize(Vector2f(20.0, 3.0));
-                    line.setPosition(Vector2f(matriz1.matriz_pixels[i][j].x + 5, matriz1.matriz_pixels[i][j].y - 2));
-                    line.setFillColor(Color::Green);
-                    window.draw(line);
 
-                    if ( clock.getElapsedTime().asMilliseconds() > 500 && tempE.vida > 0 && tempS.cuerpo.vida > 0 &&
+                    if ( clock.getElapsedTime().asMilliseconds() > 1000 && tempE.vida > 0 && tempS.cuerpo.vida > 0 &&
                          enemigoCerca(matriz1.matriz_pos, i, j)) {
                         validarAtaque(&s_rectSourceSprite, attack);
 
@@ -711,16 +708,13 @@ void window::iniciar(int cant, string route) {
                         tempS.atacar(attack, &tempE);
                         std::cout << "Vida Enemigo Despues: " << tempE.vida << std::endl;
 
-                        if ( soldadoCerca(matriz1.matriz_pos, tempE.x, tempE.y)) {
+                        if (enemigoCerca(matriz1.matriz_pos, tempE.x, tempE.y)) {
                             e_rectSourceSprite.left = 0;
                             e_rectSourceSprite.top = 35;
 
                             std::cout << "Vida Soldado Antes: " << tempS.cuerpo.vida << std::endl;
                             tempE.atacar(&tempS);
                             std::cout << "Vida Soldado Despues: " << tempS.cuerpo.vida << std::endl;
-                        } else {
-                            e_rectSourceSprite.left = 120;
-                            e_rectSourceSprite.top = 35;
                         }
 
                         if ( tempE.vida > 0 || tempS.cuerpo.vida > 0 ) {
@@ -728,15 +722,13 @@ void window::iniciar(int cant, string route) {
                         }
 
                         if ( tempE.vida <= 0 ) {
+                            matriz1.matriz_pos[tempE.x][tempE.y] = 0;
                             this->checkLines(&lines, &impresion);
                             impresion += "\nEnemigo eliminado...";
-                            matriz1.matriz_pos[tempE.x][tempE.y] = 0;
-                            this->enemigoCerca(&matriz1, array_e, &tempE, &tempS, cant);
                         } else if ( tempS.cuerpo.vida <= 0 ) {
+                            matriz1.matriz_pos[tempS.cuerpo.x][tempS.cuerpo.y] = 0;
                             this->checkLines(&lines, &impresion);
                             impresion += "\nSoldado Caido...";
-                            matriz1.matriz_pos[tempS.cuerpo.x][tempS.cuerpo.y] = 0;
-                            this->enemigoCerca(&matriz1, array_e, &tempE, &tempS, cant);
                         }
                     } else {
                         s_rectSourceSprite.left = 10;
@@ -749,13 +741,15 @@ void window::iniciar(int cant, string route) {
                     Vector2f vector2f = matriz1.matriz_pixels[i][j];
                     aliado.setPosition(Vector2f(vector2f.x, vector2f.y + 1));
                     window.draw(aliado);
+
+                    line_s.setPosition(Vector2f(matriz1.matriz_pixels[i][j].x + 5, matriz1.matriz_pixels[i][j].y - 2));
+                    line_s.setFillColor(Color::Green);
+                    window.draw(line_s);
                 }
                 if ( matriz1.matriz_pos[i][j] == 2 ) {
-                    RectangleShape line;
-                    line.setSize(Vector2f(20.0, 3.0));
-                    line.setPosition(Vector2f(matriz1.matriz_pixels[i][j].x + 2, matriz1.matriz_pixels[i][j].y - 2));
-                    line.setFillColor(Color::Red);
-                    window.draw(line);
+                    line_e.setPosition(Vector2f(matriz1.matriz_pixels[i][j].x + 2, matriz1.matriz_pixels[i][j].y - 2));
+                    line_e.setFillColor(Color::Red);
+                    window.draw(line_e);
 
                     if ( tempE.y != j ) {
                         e_rectSourceSprite.left = 120;
@@ -797,14 +791,17 @@ void window::iniciar(int cant, string route) {
                             }
                             break;
                     }
-                    if ( matriz1.matriz_pos[i][j] == 0 ) {
-                        window.draw(grassS);
-                    }
                     gemS.setPosition(matriz1.matriz_pixels[i][j]);
                     gemS.setTexture(gem);
                     window.draw(gemS);
                 }
+                if ( matriz1.matriz_pos[i][j] == 0 ) {
+                    window.draw(grassS);
+                }
             }
+        }
+        if(tempS.cuerpo.vida <= 0 || tempE.vida <= 0){
+            this->enemigoCerca(&matriz1, array_e, &tempE, &tempS, cant);
         }
         window.display();
     }

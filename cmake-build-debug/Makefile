@@ -158,6 +158,33 @@ MySFML/fast:
 	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/build
 .PHONY : MySFML/fast
 
+Dijkstra.o: Dijkstra.cpp.o
+
+.PHONY : Dijkstra.o
+
+# target to build an object file
+Dijkstra.cpp.o:
+	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Dijkstra.cpp.o
+.PHONY : Dijkstra.cpp.o
+
+Dijkstra.i: Dijkstra.cpp.i
+
+.PHONY : Dijkstra.i
+
+# target to preprocess a source file
+Dijkstra.cpp.i:
+	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Dijkstra.cpp.i
+.PHONY : Dijkstra.cpp.i
+
+Dijkstra.s: Dijkstra.cpp.s
+
+.PHONY : Dijkstra.s
+
+# target to generate assembly for a file
+Dijkstra.cpp.s:
+	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Dijkstra.cpp.s
+.PHONY : Dijkstra.cpp.s
+
 Enemigo.o: Enemigo.cpp.o
 
 .PHONY : Enemigo.o
@@ -185,32 +212,86 @@ Enemigo.cpp.s:
 	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Enemigo.cpp.s
 .PHONY : Enemigo.cpp.s
 
-Inicio.o: Inicio.cpp.o
+Kruskal.o: Kruskal.cpp.o
 
-.PHONY : Inicio.o
+.PHONY : Kruskal.o
 
 # target to build an object file
-Inicio.cpp.o:
-	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Inicio.cpp.o
-.PHONY : Inicio.cpp.o
+Kruskal.cpp.o:
+	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Kruskal.cpp.o
+.PHONY : Kruskal.cpp.o
 
-Inicio.i: Inicio.cpp.i
+Kruskal.i: Kruskal.cpp.i
 
-.PHONY : Inicio.i
+.PHONY : Kruskal.i
 
 # target to preprocess a source file
-Inicio.cpp.i:
-	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Inicio.cpp.i
-.PHONY : Inicio.cpp.i
+Kruskal.cpp.i:
+	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Kruskal.cpp.i
+.PHONY : Kruskal.cpp.i
 
-Inicio.s: Inicio.cpp.s
+Kruskal.s: Kruskal.cpp.s
 
-.PHONY : Inicio.s
+.PHONY : Kruskal.s
 
 # target to generate assembly for a file
-Inicio.cpp.s:
-	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Inicio.cpp.s
-.PHONY : Inicio.cpp.s
+Kruskal.cpp.s:
+	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Kruskal.cpp.s
+.PHONY : Kruskal.cpp.s
+
+PathFinding.o: PathFinding.cpp.o
+
+.PHONY : PathFinding.o
+
+# target to build an object file
+PathFinding.cpp.o:
+	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/PathFinding.cpp.o
+.PHONY : PathFinding.cpp.o
+
+PathFinding.i: PathFinding.cpp.i
+
+.PHONY : PathFinding.i
+
+# target to preprocess a source file
+PathFinding.cpp.i:
+	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/PathFinding.cpp.i
+.PHONY : PathFinding.cpp.i
+
+PathFinding.s: PathFinding.cpp.s
+
+.PHONY : PathFinding.s
+
+# target to generate assembly for a file
+PathFinding.cpp.s:
+	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/PathFinding.cpp.s
+.PHONY : PathFinding.cpp.s
+
+Prim.o: Prim.cpp.o
+
+.PHONY : Prim.o
+
+# target to build an object file
+Prim.cpp.o:
+	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Prim.cpp.o
+.PHONY : Prim.cpp.o
+
+Prim.i: Prim.cpp.i
+
+.PHONY : Prim.i
+
+# target to preprocess a source file
+Prim.cpp.i:
+	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Prim.cpp.i
+.PHONY : Prim.cpp.i
+
+Prim.s: Prim.cpp.s
+
+.PHONY : Prim.s
+
+# target to generate assembly for a file
+Prim.cpp.s:
+	$(MAKE) -f CMakeFiles/MySFML.dir/build.make CMakeFiles/MySFML.dir/Prim.cpp.s
+.PHONY : Prim.cpp.s
 
 main.o: main.cpp.o
 
@@ -308,12 +389,21 @@ help:
 	@echo "... package_source"
 	@echo "... MySFML"
 	@echo "... package"
+	@echo "... Dijkstra.o"
+	@echo "... Dijkstra.i"
+	@echo "... Dijkstra.s"
 	@echo "... Enemigo.o"
 	@echo "... Enemigo.i"
 	@echo "... Enemigo.s"
-	@echo "... Inicio.o"
-	@echo "... Inicio.i"
-	@echo "... Inicio.s"
+	@echo "... Kruskal.o"
+	@echo "... Kruskal.i"
+	@echo "... Kruskal.s"
+	@echo "... PathFinding.o"
+	@echo "... PathFinding.i"
+	@echo "... PathFinding.s"
+	@echo "... Prim.o"
+	@echo "... Prim.i"
+	@echo "... Prim.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

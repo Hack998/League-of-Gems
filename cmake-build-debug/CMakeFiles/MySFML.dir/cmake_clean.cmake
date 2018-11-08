@@ -3,7 +3,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/MySFML.dir/window.cpp.o"
   "CMakeFiles/MySFML.dir/soldado.cpp.o"
   "CMakeFiles/MySFML.dir/Enemigo.cpp.o"
-  "CMakeFiles/MySFML.dir/Inicio.cpp.o"
+  "CMakeFiles/MySFML.dir/Dijkstra.cpp.o"
+  "CMakeFiles/MySFML.dir/Kruskal.cpp.o"
+  "CMakeFiles/MySFML.dir/PathFinding.cpp.o"
+  "CMakeFiles/MySFML.dir/Prim.cpp.o"
   "MySFML.pdb"
   "MySFML"
 )
